@@ -1,3 +1,34 @@
-<p **ngFor="let tempProduct of Products">
-    {{tempProduct.name}} : {{tempProduct.unitPrice | currency:'INR'}}
-</p>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Cat ID</th>
+        <th scope="col">Image</th>
+        <th scope="col">Sku</th>
+        <th scope="col">Name</th>
+        <th scope="col">Desc</th>
+        <th scope="col">Price</th>
+        <th scope="col">Units in Stock</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Last Updated</th>
+        <th scope="col">Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tempProduct of products">
+        <td>{{ 1 }}</td>
+        <td>{{ 1 }}</td>
+        <td>{{ tempProduct.imageUrl }}</td>
+        <td>{{ tempProduct.sku }}</td>
+        <td>{{ tempProduct.name }}</td>
+        <td>{{ tempProduct.description }}</td>
+        <td>{{ tempProduct.unitPrice }}</td>
+        <td>{{ tempProduct.unitsInStock }}</td>
+        <td>{{ tempProduct.dateCreated }}</td>
+        <td>{{ tempProduct.lastUpdated }}</td>
+        <td>{{ tempProduct.active }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
