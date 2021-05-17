@@ -10,6 +10,7 @@ import { Product } from './entities/Product';
   declarations: [
     AppComponent,
     ProductListComponent
+  
   ],
   imports: [
     BrowserModule,

@@ -19,15 +19,15 @@
       <tr *ngFor="let tempProduct of products">
         <td>{{ 1 }}</td>
         <td>{{ 1 }}</td>
-        <td>{{ tempProduct.imageUrl }}</td>
-        <td>{{ tempProduct.sku }}</td>
-        <td>{{ tempProduct.name }}</td>
-        <td>{{ tempProduct.description }}</td>
-        <td>{{ tempProduct.unitPrice }}</td>
-        <td>{{ tempProduct.unitsInStock }}</td>
-        <td>{{ tempProduct.dateCreated }}</td>
-        <td>{{ tempProduct.lastUpdated }}</td>
-        <td>{{ tempProduct.active }}</td>
+        <td class="align-middle"> <img src="{{ tempProduct.imageUrl }}" alt="" height="50px"> </td>
+        <td class="align-middle">{{ tempProduct.sku }}</td>
+        <td class="align-middle">{{ tempProduct.name }}</td>
+        <td class="align-middle">{{ tempProduct.description }}</td>
+        <td class="align-middle">{{ tempProduct.unitPrice | currency : 'INR' }}</td>
+        <td class="align-middle">{{ tempProduct.unitsInStock }}</td>
+        <td class="align-middle">{{ tempProduct.dateCreated }}</td>
+        <td class="align-middle">{{ tempProduct.lastUpdated }}</td>
+        <td class="align-middle">{{ tempProduct.active }}</td>
       </tr>
     </tbody>
   </table>
