@@ -1,20 +1,15 @@
-<div class="main-content">
-    <div class="section-content section-content-p30">
-        <div class="container-fluid">
-            <div class="row">
-
-                <!-- loop over the collection of products -->
-                <div *ngFor="let tempProduct of products" class="col-md-4 text-center" style="border: 1px solid red;">
-
-                    <div class="product-box">
-                        <img src="{{ tempProduct.imageUrl }}" class="img-responsive">
-                        <h1>{{ tempProduct.name }}</h1>
-                        <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
-                        <a href="#" class="primary-btn">Add to cart</a>
-                    </div>
-
-                </div>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <!-- loop over the collection of products -->
+    <div class="card col-md-3 mt-3 text-center" *ngFor="let tempProduct of products">
+        <div class="card" style="width: 18rem; margin: 0 auto; ">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.8DKpWBc_4SMLiRqWU39PpgHaHa%26pid%3DApi&f=1" class="card-img-top" alt="..."  >
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Add TO CART</a>
             </div>
-        </div>
+          </div>
     </div>
+  </div>
 </div>
+
