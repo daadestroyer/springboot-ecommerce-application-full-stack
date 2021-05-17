@@ -1,12 +1,15 @@
-<div class="container-fluid mt-5">
+<div class="container mt-5">
   <div class="row">
     <!-- loop over the collection of products -->
     <div class="card col-md-3 mt-3 text-center" *ngFor="let tempProduct of products">
         <div class="card" style="width: 18rem; margin: 0 auto; ">
-            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.8DKpWBc_4SMLiRqWU39PpgHaHa%26pid%3DApi&f=1" class="card-img-top" alt="..."  >
+            <img src="{{tempProduct.imageUrl}}" class="card-img-top" alt="..."  >
+                      
             <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Add TO CART</a>
+                <h5 class="card-title">{{tempProduct.name}}</h5>
+                <h4>{{tempProduct.unitPrice | currency:'INR' }}  </h4>
+              <p class="card-text">Men's Bouncer-01 Sports Latest Stylish Casual Sneakers,<p>
+              <a href="#" class="btn btn-primary">ADD TO CART</a>
             </div>
           </div>
     </div>
