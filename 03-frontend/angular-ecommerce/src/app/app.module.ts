@@ -9,12 +9,15 @@ import { HomeComponent } from './components/home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ContactComponent } from './components/contact/contact.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ProductCategoryDropdownComponent } from './components/product-category-dropdown/product-category-dropdown.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
   {path:'contact',component:ContactComponent},
-  {path:'error',component:ErrorComponent},
   {path:'products',component:ProductListComponent},
+  {path:'category',component:ProductListComponent},
+  { path: 'category/:id', component: ProductListComponent },
+  {path:'**',component:ErrorComponent},
 ];
 
 @NgModule({
@@ -23,7 +26,8 @@ const appRoutes: Routes = [
     ProductListComponent,
     HomeComponent,
     ContactComponent,
-    ErrorComponent
+    ErrorComponent,
+    ProductCategoryDropdownComponent
   ],
   imports: [
     BrowserModule,

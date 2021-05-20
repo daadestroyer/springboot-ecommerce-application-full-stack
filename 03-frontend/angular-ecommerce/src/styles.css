@@ -1,0 +1,8 @@
+.active-link{
+    font-weight: bold;
+    color: white;
+    
+}
+ul>li>a{
+    color: white;
+}
