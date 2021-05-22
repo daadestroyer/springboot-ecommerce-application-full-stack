@@ -1,4 +1,4 @@
-<div class="continer-fluid" style="border: 1px solid red;">
+<div class="continer-fluid" >
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" routerLink="/">Apni Dukan</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,31 +9,37 @@
           <li class="nav-item active">
               <a class="nav-link" routerLink="/">Home </a>
           </li>
+
     <app-product-category-dropdown></app-product-category-dropdown>
+
+s
+
     <li class="nav-item">
       <a class="nav-link" routerLink="/contact" routerLinkActive="active-link">Contact Us</a>
   </li>
   </ul>
-  <form class="form-inline ml-5">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-      </button>
-  </form>
+      <app-search></app-search>
+  <ul class="navbar-nav ml-3">
+    <li class="nav-item">
+      <i class="far fa-sign-in-alt" ></i>
+
+      <a class="btn btn-outline-warning " href="#" role="button">Login</a>
+    </li>
+  </ul>
+
   </div>
   </nav>
-  
+
   <!-- <app-product-list></app-product-list> -->
 </div>  <!-- MAIN CONTAINER END -->
 
 
 <div class="card">
-  
+
   <div class="card-body">
     <router-outlet></router-outlet>
   </div>
 </div>
-
 
 
 <!--  -->
