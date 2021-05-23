@@ -12,6 +12,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ProductCategoryDropdownComponent } from './components/product-category-dropdown/product-category-dropdown.component';
 import {SearchComponent} from "./components/search/search.component";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { FilterpanelComponent } from './components/filterpanel/filterpanel.component';
 
 
 
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
   {path:'category',component:ProductListComponent},
   { path: 'category/:id', component: ProductListComponent },
   { path: 'search/:keyword', component: ProductListComponent },
-  { path: 'productdetails', component: ProductDetailsComponent },
+  { path: 'product-detail/:id', component: ProductDetailsComponent },
+  { path: 'filterpanel', component: FilterpanelComponent },
   {path:'**',component:ErrorComponent},
 ];
 
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     ProductCategoryDropdownComponent,
     SearchComponent,
     ProductDetailsComponent,
+    FilterpanelComponent,
   ],
   imports: [
     BrowserModule,

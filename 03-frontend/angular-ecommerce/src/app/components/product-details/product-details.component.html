@@ -37,7 +37,7 @@
         <div class="col-md-5 order-lg-2 order-1" >
           <div class="image_selected">
             <img
-              src="http://pngimg.com/uploads/macbook/macbook_PNG52.png"
+              src="{{product.imageUrl}}"
               class="img-fluid mt-5"
               alt="qEwct2O"
               height="100%"
@@ -47,14 +47,14 @@
           <div class="container">
             <div class="row">
               <img
-                src="http://pngimg.com/uploads/macbook/macbook_PNG52.png"
+              src="{{product.imageUrl}}"
                 class="img-fluid mt-5"
                 alt="qEwct2O"
                 height="100px"
                 width="300px"
               />
               <img
-                src="http://pngimg.com/uploads/macbook/macbook_PNG52.png"
+              src="{{product.imageUrl}}"
                 class="img-fluid mt-5"
                 alt="qEwct2O"
                 height="100px"
@@ -78,8 +78,7 @@
             </nav>
             <div class="product_name">
               <h3>
-                Acer Aspire 3 Celeron Dual Core - (2 GB/500 GB HDD/Windows 10
-                Home) A315-33 Laptop (15.6 inch, Black, 2.1 kg)
+                {{product.name}} | {{product.sku}} 
               </h3>
             </div>
             <div class="product-rating">
@@ -87,7 +86,7 @@
               <span class="ml-3">35 Ratings & 45 Reviews</span>
             </div>
             <div class=" mt-3" >
-              <span class="product_price"><h2>₹ 29,000</h2></span>
+              <span class="product_price"><h1>₹ {{product.unitPrice}}</h1></span>
               <span style='color:red;text-decoration:line-through'>
                 <span style='color:black'>₹ 39,000</span>
               </span>
@@ -126,6 +125,7 @@
                 ></span
               >
             </div>
+
             <div>
               <div class="row mt-3">
                 <div class="col-md-5">
@@ -165,6 +165,14 @@
                 </div>
               </div>
             </div>
+
+            <div class="card mt-4" >
+              <div class="card-body">
+                <h4><b>Description</b></h4>
+                <h5>{{product.name}} | {{product.sku}} </h5>
+                {{product.description}}
+              </div>
+             </div>
             <hr class="singleline" />
             <div class="order_info d-flex flex-row">
               <form action="#"></form>

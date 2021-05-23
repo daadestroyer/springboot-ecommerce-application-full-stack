@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  // this method will work when user want to search products using search bar
   handleSearchProducts() {
     const keyword: string = this.route.snapshot.paramMap.get('keyword');
     this.searchkeyword = keyword;
@@ -43,7 +44,7 @@ export class ProductListComponent implements OnInit {
         this.products = data;
       }); 
   }
-
+// this method will work when user want to find product based on category id using dropdown
   handleListProducts() {
     const id = this.route.snapshot.params['id'];
     console.log('ID = ' + id);
@@ -53,7 +54,7 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = id;
     }
     this.productService
-      .getProductListByProductId(this.currentCategoryId)
+      .getProductListByCategoryId(this.currentCategoryId)
       .subscribe((data) => {
         this.products = data;
       });

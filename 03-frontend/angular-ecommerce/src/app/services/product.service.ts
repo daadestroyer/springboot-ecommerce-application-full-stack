@@ -9,6 +9,7 @@ import { ProductCategory } from '../entitys/product-category';
   providedIn: 'root'
 })
 export class ProductService {
+ 
   
 
 
@@ -19,7 +20,7 @@ export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
   // getting product list and storing it into products array
-  getProductListByProductId(catId:number): Observable<Product[]> {
+  getProductListByCategoryId(catId:number): Observable<Product[]> {
 
     // build URL based on category id
     const searchUrl = `${this.productUrl}/search/findProductByCategoryId?id=${catId}`;
@@ -45,6 +46,13 @@ export class ProductService {
     return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
       map(response => response._embedded.products)
     );
+  }
+
+  getProductByProductId(productId: number) : Observable<Product>{
+    // need to build url based on prodct id
+    const productUrl = `${this.productUrl}/${productId}`;
+    return this.httpClient.get<Product>(productUrl);
+    // returning single product
   }
 }
 
