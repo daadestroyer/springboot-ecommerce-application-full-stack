@@ -11,9 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductListComponent implements OnInit {
   products: Product[];
   currentCategoryId: number;
+  previousCatId: number;
   searchMode: boolean;
   searchkeyword: string;
 
+  // new properties for pagination
+  thePageNumber : number = 1;
+  thePageSize : number = 10;
+  theTotalElements: number = 0;
+  
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute
@@ -53,6 +59,17 @@ export class ProductListComponent implements OnInit {
     } else {
       this.currentCategoryId = id;
     }
+    //
+    // check if we have a differnt category then previous
+    // angular will reuse the component if it is currently being viewed
+    //
+    // if we have a different category if then previous  
+    // then set the page number  back to 1
+
+    if (this.previousCatId != this.currentCategoryId) {
+      this.thePageNumber = 1;
+    }
+
     this.productService
       .getProductListByCategoryId(this.currentCategoryId)
       .subscribe((data) => {
