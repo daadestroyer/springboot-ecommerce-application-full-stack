@@ -11,6 +11,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ProductCategoryDropdownComponent } from './components/product-category-dropdown/product-category-dropdown.component';
 import {SearchComponent} from "./components/search/search.component";
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 
 
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
   {path:'products',component:ProductListComponent},
   {path:'category',component:ProductListComponent},
   { path: 'category/:id', component: ProductListComponent },
-  { path: 'search/:product', component: ProductListComponent },
+  { path: 'search/:keyword', component: ProductListComponent },
+  { path: 'productdetails', component: ProductDetailsComponent },
   {path:'**',component:ErrorComponent},
 ];
 
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     ErrorComponent,
     ProductCategoryDropdownComponent,
     SearchComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

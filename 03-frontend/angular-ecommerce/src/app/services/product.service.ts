@@ -9,6 +9,7 @@ import { ProductCategory } from '../entitys/product-category';
   providedIn: 'root'
 })
 export class ProductService {
+  
 
 
   private productUrl = 'http://localhost:8080/api/products';
@@ -22,11 +23,7 @@ export class ProductService {
 
     // build URL based on category id
     const searchUrl = `${this.productUrl}/search/findProductByCategoryId?id=${catId}`;
-
-
-    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
-      map(response => response._embedded.products)
-    );
+    return this.getProductList(searchUrl);
   }
 
   // this method is used to display all categores in navigation bar dropdown
@@ -36,7 +33,21 @@ export class ProductService {
       map(response => response._embedded.productCategory)
     );
   }
+
+  searchProducts(keyword: string): Observable<Product[]> {
+    
+    // build URL based on keyword
+    const searchKeywordUrl = `${this.productUrl}/search/findByNameContaining?product_name=${keyword}`;
+    return this.getProductList(searchKeywordUrl);
+  }
+
+  private getProductList(searchUrl: string): Observable<Product[]> {
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
 }
+
 
 class GetResponseProducts {
   _embedded: {

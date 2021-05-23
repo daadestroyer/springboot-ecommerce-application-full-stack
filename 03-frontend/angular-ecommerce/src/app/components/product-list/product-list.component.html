@@ -1,6 +1,21 @@
 <div class="container mt-5">
+ 
+     <!-- if products not found display message product not found -->
+          <!-- ? defined as safe navigation operator (?) guards agains null and identified values in property -->
+          <ng-container *ngIf="products.length == 0; else elseTemplate">
+            <div class="alert alert-danger text-center" role="alert">
+             <b>OOPS! Search results found</b>
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div class="alert alert-success text-center" role="alert">
+             <b>{{products.length}} products found</b>
+          </div>
+          </ng-template>
+  
   <div class="row">
     <!-- loop over the collection of products -->
+       
     <div class="card col-md-3 mt-3 text-center" *ngFor="let tempProduct of products">
     
         <div class="card" style="width: 18rem; margin: 0 auto; ">
@@ -13,7 +28,10 @@
               <a href="#" class="btn btn-primary">ADD TO CART</a>
             </div>
           </div>
+          
     </div>
+          
+      
   </div>
 </div>
 

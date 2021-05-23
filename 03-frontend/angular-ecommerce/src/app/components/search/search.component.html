@@ -1,8 +1,12 @@
 <form class="form-inline ml-5">
-  <input class="form-control mr-sm-4" #myInput (keyup.enter)="doMyCustomerWork(myInput.value)" type="text" placeholder="Search" aria-label="Search" />
+  <input #myInput type="text"
+         class="form-control mr-sm-4"
+         (keyup.enter)="doSearch(myInput.value)"  p
+         laceholder="Search" aria-label="Search" />
 
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-    (click)="searchProduct()">
+    (click)="doSearch(myInput.value)">
     Search
   </button>
 </form>
+
