@@ -55,7 +55,7 @@ export class ProductService {
     // returning single product
   }
 
-  // pagination method
+  // pagination method when item searched on id based
   getProductListPagination(page:number , pageSize : number , catId : number): Observable<GetResponseProducts> {
 
     // build URL based on category id using pagination
@@ -63,7 +63,18 @@ export class ProductService {
       + `&page=${page}&size=${pageSize}`;
     return this.httpClient.get<GetResponseProducts>(searchUrl);
   }
+
+    // pagination method
+    searchProductPagination(page:number , pageSize : number , catKeyword : string): Observable<GetResponseProducts> {
+
+      // build URL based on category id using pagination
+      const searchUrl = `${this.productUrl}/search/findByNameContaining?product_name=${catKeyword}`
+        + `&page=${page}&size=${pageSize}`;
+      return this.httpClient.get<GetResponseProducts>(searchUrl);
+    }
+  
 }
+
 
 
 interface GetResponseProducts {

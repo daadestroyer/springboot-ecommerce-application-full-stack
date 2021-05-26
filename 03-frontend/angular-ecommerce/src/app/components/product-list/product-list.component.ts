@@ -19,6 +19,8 @@ export class ProductListComponent implements OnInit {
   thePageNumber : number = 1;
   thePageSize : number = 8; // at a time how many pages you want to display
   theTotalElements: number = 0;
+
+  prevKeyword: string = null;
   
   constructor(
     private productService: ProductService,
@@ -44,11 +46,21 @@ export class ProductListComponent implements OnInit {
   handleSearchProducts() {
     const keyword: string = this.route.snapshot.paramMap.get('keyword');
     this.searchkeyword = keyword;
+   
+   // if we have a different keyword than previous one
+   // then set thePageNumber to 1 
+   
+    if (this.prevKeyword != keyword) {
+      this.thePageNumber = 1;
+    }
+
+    this.prevKeyword = keyword;
+
+
     console.log(keyword);
-    this.productService.searchProducts(this.searchkeyword).subscribe(
-      (data) => {
-        this.products = data;
-      }); 
+    this.productService.searchProductPagination(this.thePageNumber - 1,
+                                                this.thePageSize,
+                                                keyword).subscribe(this.processResult());
   }
 // this method will work when user want to find product based on category id using dropdown
   handleListProducts() {
