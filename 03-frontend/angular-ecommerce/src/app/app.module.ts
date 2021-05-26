@@ -13,7 +13,7 @@ import { ProductCategoryDropdownComponent } from './components/product-category-
 import {SearchComponent} from "./components/search/search.component";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FilterpanelComponent } from './components/filterpanel/filterpanel.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -43,6 +43,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [ProductService],

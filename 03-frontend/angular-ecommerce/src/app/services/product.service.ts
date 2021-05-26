@@ -20,7 +20,7 @@ export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
   // getting product list and storing it into products array
-  getProductListByCategoryId(catId:number): Observable<Product[]> {
+  getProductListByCategoryIdPaginate(catId:number): Observable<Product[]> {
 
     // build URL based on category id
     const searchUrl = `${this.productUrl}/search/findProductByCategoryId?id=${catId}`;

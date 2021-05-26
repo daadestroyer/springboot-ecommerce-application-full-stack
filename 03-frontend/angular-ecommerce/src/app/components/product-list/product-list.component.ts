@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   // new properties for pagination
   thePageNumber : number = 1;
-  thePageSize : number = 10;
+  thePageSize : number = 8; // at a time how many pages you want to display
   theTotalElements: number = 0;
   
   constructor(
@@ -70,10 +70,28 @@ export class ProductListComponent implements OnInit {
       this.thePageNumber = 1;
     }
 
-    this.productService
-      .getProductListByCategoryId(this.currentCategoryId)
-      .subscribe((data) => {
-        this.products = data;
-      });
+    this.previousCatId = this.currentCategoryId;
+    console.log(`current category id : =  ${this.currentCategoryId} , pageNumber = ${this.thePageNumber} `);
+
+    this.productService.getProductListPagination(this.thePageNumber-1,this.thePageSize,this.currentCategoryId).subscribe(this.processResult());
+    
+  }
+
+
+  processResult() {
+    return data => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number + 1;            // current page
+      this.thePageSize = data.page.size;                    // total page
+      this.theTotalElements = data.page.totalElements;      // total elements
+    }
+  }
+
+  updatePageSize(pageSize: number) {
+    
+    console.log("PAGE SIZE = " + pageSize);
+    this.thePageSize = pageSize;
+    this.thePageNumber = 1;
+    this.listProducts();
   }
 }
