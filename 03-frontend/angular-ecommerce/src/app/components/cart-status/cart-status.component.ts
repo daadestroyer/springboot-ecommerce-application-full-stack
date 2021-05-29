@@ -9,7 +9,7 @@ import { CartService } from '../../services/cart.service';
 export class CartStatusComponent implements OnInit {
 
   totalPrice: number = 0.0;
-  totalQty: number = 5;
+  totalQty: number = 0;
   constructor(private cartServce:CartService) { }
 
   ngOnInit(): void {
