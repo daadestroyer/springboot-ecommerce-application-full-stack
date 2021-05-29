@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/" style="font-size: 1.4em"
+          <a class="nav-link" routerLink="/" 
             ><i class="fas fa-home"></i> Home
           </a>
         </li>
@@ -29,30 +29,20 @@
             class="nav-link"
             routerLink="/contact"
             routerLinkActive="active-link"
-            style="font-size: 1.4em"
+            
           >
             <i
               class="fas fa-phone-volume"
-              style="color: white; font-size: 1.2em"
+              style="color: white;"
             ></i>
             Contact Us</a
           >
         </li>
       </ul>
+
+
       <app-search></app-search>
-      <ul class="navbar-nav ml-3 ">
-        <li class="nav-item">
-          <a href="#" class="btn btn-outline-primary">   
-           <i class="fas fa-rupee-sign " style="color: yellow; font-size: 1.5em"><span class="ml-1">3000.00</span></i>
-           <i class="fas fa-grip-lines-vertical ml-2 mr-2" style="color: white; font-size: 1.3em"></i>
-           
-          
-           <i class="fas fa-shopping-cart" style="color: yellow; font-size: 1.5em" ><span class="ml-2" style="color: white"></span></i>
-           <span style="color: white;font-size: 1.3em">10</span>
-        </a>
-          </li>
-      </ul>
-      
+      <app-cart-status></app-cart-status>
       
 
       <ul class="navbar-nav ml-3">
@@ -60,7 +50,7 @@
           <a href="#">
             <i
               class="fas fa-sign-in-alt"
-              style="color: yellow; font-size: 1.5em"
+              style="color: yellow;"
               ><span class="ml-2" style="color: white">LOGIN</span></i
             ></a
           >

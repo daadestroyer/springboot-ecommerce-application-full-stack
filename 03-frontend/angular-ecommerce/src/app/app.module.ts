@@ -14,6 +14,7 @@ import {SearchComponent} from "./components/search/search.component";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FilterpanelComponent } from './components/filterpanel/filterpanel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
 
 
 const appRoutes: Routes = [
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     SearchComponent,
     ProductDetailsComponent,
     FilterpanelComponent,
+    CartStatusComponent,
   ],
   imports: [
     BrowserModule,
