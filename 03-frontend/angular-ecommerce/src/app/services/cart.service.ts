@@ -77,9 +77,6 @@ export class CartService {
 
     // logging cart data just for debugging purpose  
     this.logCartData(totalPriceValue, totalQtyValue);
-
-
-    
   }
 
   logCartData(totalPriceValue: number, totalQtyValue: number) {
