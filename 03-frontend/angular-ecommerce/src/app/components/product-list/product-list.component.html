@@ -8,26 +8,24 @@
 </div>
  -->
 
- 
 <div class="container mt-5">
-  
   <!-- if products not found display message product not found -->
   <!-- ? defined as safe navigation operator (?) guards agains null and identified values in property -->
   <ng-container *ngIf="products.length == 0; else elseTemplate">
     <div class="alert alert-danger text-center" role="alert">
-      <b>OOPS.... {{ products.length }} Search results found</b>
+      <i class="fas fa-sad-tear" style=" font-size: 2em"><span class="ml-3"><b>OOPS.... {{ products.length }} Search results found</b></span></i>
     </div>
   </ng-container>
   <ng-template #elseTemplate>
     <div class="alert alert-success text-center" role="alert">
-      <b>{{ products.length }} products found</b>
+      <i class="fas fa-smile-beam" style=" font-size: 2em"><span class="ml-3"><b>{{ products.length }} products found</b></span></i>
     </div>
   </ng-template>
-  
+
   <!-- page size dropdown -->
-  <div class="col-md-3 form-group" >
+  <div class="col-md-3 form-group">
     <label for="sel1">Page Size</label>
-    <select class="form-control"  (change)="updatePageSize($event.target.value)">
+    <select class="form-control" (change)="updatePageSize($event.target.value)">
       <option selected="true">5</option>
       <option>10</option>
       <option>20</option>
@@ -36,25 +34,17 @@
   </div>
   <!-- page size dropdown -->
   <div class="row">
-    
     <!-- loop over the collection of products -->
 
-    <div
-      class="card col-md-3 mt-3 text-center"
-      *ngFor="let tempProduct of products"
-    >
+    <div class="card col-md-3 mt-3 text-center" *ngFor="let tempProduct of products">
       <div class="card" style="width: 18rem; margin: 0 auto">
         <a routerLink="/product-detail/{{ tempProduct.id }}">
-          <img
-            src="{{ tempProduct.imageUrl }}"
-            class="card-img-top"
-            alt="..."
-          />
+          <img src="{{ tempProduct.imageUrl }}" class="card-img-top" alt="..." />
         </a>
         <div class="card-body">
-          <a routerLink="/product-detail/{{ tempProduct.id }}"
-            ><h5 class="card-title">{{ tempProduct.name }}</h5></a
-          >
+          <a routerLink="/product-detail/{{ tempProduct.id }}">
+            <h5 class="card-title">{{ tempProduct.name }}</h5>
+          </a>
           <h4>{{ tempProduct.unitPrice | currency: "INR" }}</h4>
           <p class="card-text">
             Men's Bouncer-01 Sports Latest Stylish Casual Sneakers,
@@ -68,23 +58,14 @@
   </div>
   <div class="container text-center mt-5">
     <nav aria-label="Page navigation example">
-    
       <div class="container">
         <div class="row">
-          <ngb-pagination
-            class="pagination pagination-lg justify-content-center"
-            [(page)]="thePageNumber"
-            [(pageSize)]="thePageSize"
-            [(collectionSize)]="theTotalElements"
-            (pageChange)="listProducts()"
-            [maxSize]="5"
-            [boundaryLinks]="true"
-          >
+          <ngb-pagination class="pagination pagination-lg justify-content-center" [(page)]="thePageNumber"
+            [(pageSize)]="thePageSize" [(collectionSize)]="theTotalElements" (pageChange)="listProducts()" [maxSize]="5"
+            [boundaryLinks]="true">
           </ngb-pagination>
         </div>
-        
       </div>
-
     </nav>
   </div>
 </div>
