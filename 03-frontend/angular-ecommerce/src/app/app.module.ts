@@ -15,6 +15,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { FilterpanelComponent } from './components/filterpanel/filterpanel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -25,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'category/:id', component: ProductListComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'product-detail/:id', component: ProductDetailsComponent },
-  { path: 'filterpanel', component: FilterpanelComponent },
+  { path: 'cart-details', component: CartDetailsComponent },
   {path:'**',component:ErrorComponent},
 ];
 
@@ -41,6 +43,8 @@ const appRoutes: Routes = [
     ProductDetailsComponent,
     FilterpanelComponent,
     CartStatusComponent,
+    CartDetailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
