@@ -10,6 +10,7 @@ import { ok } from 'assert';
   providedIn: 'root'
 })
 export class CartService {
+  
 
   cartItem: CartItem[] = [];
 
@@ -93,7 +94,56 @@ export class CartService {
     console.log("---------")
   }
 
+  decrementQty(cartItem: CartItem) {
+    
+    // in case if 1 item is only present in cart and user want to delete that item also then in that case
+    // we need to clear the cart (simply delete that object from the array)
+    
+    cartItem.quantity--;
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: `${cartItem.name}  Removed from your cart`,
+      showConfirmButton: true,
+      timer: 1500
+    })
+    if (cartItem.quantity === 0) {
+      this.remove(cartItem);
+    }
+    else {
+      this.computeCartTotals();
+      
+    }
+  }
+  remove(cartItem: CartItem) {
+    
+    const itemIndex = this.cartItem.findIndex(
+      (tempCartItem) => tempCartItem.id == cartItem.id
+    );
 
+    // if found , remove the item from the array at the given index
+    if (itemIndex > -1) {
+      this.cartItem.splice(itemIndex, 1);
+      this.computeCartTotals();
+    }
+    // Swal.fire({
+    //   title: 'Are you sure?',
+    //   text: "You won't be able to revert this!",
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Yes, delete it!'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire(
+    //       'Deleted!',
+    //       'Your file has been deleted.',
+    //       'success'
+    //     )
+    //   }
+    // })
+  }
 
 
 }

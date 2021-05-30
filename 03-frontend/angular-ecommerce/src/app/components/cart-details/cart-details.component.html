@@ -110,27 +110,39 @@
                         </div>
                         <div>
                           <div class="form-group">
-                            <button
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                              class="minus btn btn-danger"
-                            >
-                              <i class="fas fa-minus"></i>
-                            </button>
+                            
+                            
 
                             <input
                               class="quantity form-control"
                               min="0"
                               name="quantity"
                               value="{{item.quantity}}"
-                              type="number"
+                              type="number" disabled
                             />
-
+                            <div class="form-group mt-3">
+                              <!-- button for increment qty -->
                             <button
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                              class="plus btn btn-success"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                            class="plus btn btn-success"
+                            (click)="incrementQty(item)"
                             >
-                              <i class="fas fa-plus"></i>
-                            </button>
+                            <i class="fas fa-plus"></i>
+                          </button>
+                          <!-- button for decrement qty -->
+                          <button
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                          class="minus btn btn-danger"
+                          (click)="decrementQty(item)"
+                          >
+                          <i class="fas fa-minus"></i>
+                          
+                        </button>
+                          <button type="button" class="btn btn-danger"
+                          (click)="removeItem(item)"
+                          >Remove Item</button>
+                            </div>
+
                           </div>
                           <small
                             id="passwordHelpBlock"
