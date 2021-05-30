@@ -13,8 +13,7 @@ export class CartDetailsComponent implements OnInit {
 
   cartItems: CartItem[] = [];
   totalPrice = 0;
-  finalPrice = 0;
-  shippingPrice = 100;
+   
   totalQty = 0;
 
   constructor(private cartService : CartService) { }
@@ -40,9 +39,7 @@ export class CartDetailsComponent implements OnInit {
     // compute cart total price and quantity
     this.cartService.computeCartTotals();
     
-    if (this.totalPrice > 0) {
-      this.finalPrice = this.totalPrice+this.shippingPrice;
-    }
+     
   }
   
   incrementQty(cartIitem: CartItem) {
