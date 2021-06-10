@@ -27,8 +27,30 @@ export class CheckoutComponent implements OnInit {
         firstName: [''],
         lastName: [''],
         email:['']
+      }),
+      shippingaddress: this.formBuilder.group({
+        addr1 : [''],
+        addr2 : [''],
+        country : [''],
+        state : [''],
+        zip : [''],
+      }),
+      billingaddress: this.formBuilder.group({
+        addr1 : [''],
+        addr2 : [''],
+        country : [''],
+        state : [''],
+        zip : [''],
+      }),
+      payment: this.formBuilder.group({
+        cardtype : [''],
+        nameoncard : [''],
+        cardnumber : [''],
+        expiration : [''],
+        cvv : [''],
       })
     });
+    
   }
   listCartDetails() {
     // get a handle to the cart items
@@ -53,6 +75,9 @@ export class CheckoutComponent implements OnInit {
   onSubmit() {
     console.log("handling the submit button");
     console.log(this.checkoutFormGroup.get('customer').value);
+    console.log(this.checkoutFormGroup.get('shippingaddress').value);
+    console.log(this.checkoutFormGroup.get('billingaddress').value);
+    console.log(this.checkoutFormGroup.get('payment').value);
   }
 
 }
