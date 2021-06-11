@@ -186,7 +186,7 @@
         <h4 class="mb-3">Payment</h4>
         
         <div class="row">
-          <div class="col-md-12 mb-3" formGroupName="payment">
+          <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="country">Card Type</label>
             <select class="custom-select d-block w-100" formControlName="cardtype" required="">
               <option value="">Choose...</option>
@@ -194,29 +194,39 @@
               <option value="Debit Card">Debit Card</option>
               <option value="PayPal">PayPal</option>
             </select>
-            <div class="invalid-feedback">Please select a valid country.</div>
+            <div class="invalid-feedback">Please select a vssssalid country.</div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-6 mb-3" formGroupName="payment"> 
             <label for="cc-name">Name on card</label>
             <input type="text" class="form-control"  formControlName="nameoncard" placeholder="Enter name on credit card" required="" />
             <small class="text-muted">Full name as displayed on card</small>
             <div class="invalid-feedback">Name on card is required</div>
           </div>
-          <div class="col-md-6 mb-3" formGroupName="payment">
+        </div>
+        <div class="row">
+           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="cc-number">Credit card number</label>
             <input type="text" class="form-control" formControlName="cardnumber" placeholder="Enter card number" required="" />
             <small class="text-muted">Credit Card number as displayed on card</small>
             <div class="invalid-feedback">Credit card number is required</div>
           </div>
+          <div class="col-md-6 mb-3" formGroupName="payment">
+            <label for="state">Expiration Month</label>
+            <select class="custom-select d-block w-100" formControlName="expirationmonth" required="">
+              <option *ngFor="let month of creditCardMonths" value="{{month}}">{{month}}</option>
+               
+            </select>
+            <div class="invalid-feedback">Please provide a valid state.</div>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3" formGroupName="payment">
-            <label for="cc-expiration">Expiration</label>
-            <input type="text" class="form-control" formControlName="expiration" placeholder="Enter expiration date" required="" />
-            <small class="text-muted">Expiration Date as displayed on card</small>
-            <div class="invalid-feedback">Expiration date required</div>
+            <label for="state">Expiration Year</label>
+            <select class="custom-select d-block w-100" formControlName="expirationyear" required="">
+              <option *ngFor="let year of creditCardYears" value="{{year}}">{{year}}</option>
+               
+            </select>
+            <div class="invalid-feedback">Please provide a valid state.</div>
           </div>
           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="cc-cvv">CVV</label>
