@@ -26,7 +26,22 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        HttpMethod[] theUnSupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
+        // Disable the method for Product : PUT , POST , DELETE
+        disableHttpMethods(Product.class,config, theUnSupportedActions);
+
+        // Disable the method for ProductCategory : PUT , POST , DELETE
+        disableHttpMethods(ProductCategory.class,config, theUnSupportedActions);
+
+        // Disable the method for Country : PUT , POST , DELETE
+        disableHttpMethods(Country.class,config, theUnSupportedActions);
+
+        // Disable the method for States : PUT , POST , DELETE
+        disableHttpMethods(States.class,config, theUnSupportedActions);
+
+        // call an internal helper method to expose the id
+        exposeIds(config);
     }
 
     private void disableHttpMethods(Class theClass , RepositoryRestConfiguration config, HttpMethod[] theUnSupportedActions) {
