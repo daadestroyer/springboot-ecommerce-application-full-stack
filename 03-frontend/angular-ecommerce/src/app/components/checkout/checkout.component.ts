@@ -4,6 +4,7 @@ import { CartItem } from '../../entitys/cart-item';
 import { CartService } from '../../services/cart.service';
 import { CheckoutFormService } from '../../services/checkout-form.service';
 import { Country } from '../../entitys/country';
+import { State } from '../../entitys/state';
 
 @Component({
   selector: 'app-checkout',
@@ -20,8 +21,11 @@ export class CheckoutComponent implements OnInit {
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
 
+  shippingAddressStates: State[] = [];
+  billingAddressStates: State[] = [];
 
-  countries : Country[] = []
+  countries: Country[] = []
+  
   constructor(
     private formBuilder: FormBuilder,
     private cartService: CartService,
@@ -126,5 +130,25 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutFormGroup.get('shippingaddress').value);
     console.log(this.checkoutFormGroup.get('billingaddress').value);
     console.log(this.checkoutFormGroup.get('payment').value);
+  }
+
+  getStates(formGroupName:string) {
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+    const countryCode = formGroup.value.country.code
+    const countryName = formGroup.value.country.name
+
+    this.checkOutFormService.getStates(countryCode).subscribe(
+      (data) => {
+        if (formGroupName === 'billingaddress') {
+         
+          this.billingAddressStates = data;
+
+        }
+        else {
+          
+          this.shippingAddressStates = data;
+        }
+      }
+    );
   }
 }

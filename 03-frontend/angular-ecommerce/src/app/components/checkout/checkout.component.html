@@ -114,7 +114,7 @@
         <div class="row">
           <div class="col-md-5 mb-3" formGroupName="shippingaddress">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" formControlName="country" required="">
+            <select class="custom-select d-block w-100" formControlName="country" required="" (change)="getStates('shippingaddress')">
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
              
             </select>
@@ -122,9 +122,9 @@
           </div>
           <div class="col-md-4 mb-3" formGroupName="shippingaddress">
             <label for="state">State</label>
-            <select class="custom-select d-block w-100" formControlName="state" required="">
-              <option value="">Choose...</option>
-              <option>California</option>
+            <select class="custom-select d-block w-100" formControlName="state" required="" >
+              <option *ngFor="let state of shippingAddressStates" [ngValue]="state">{{state.name}}</option>
+               
             </select>
             <div class="invalid-feedback">Please provide a valid state.</div>
           </div>
@@ -135,7 +135,7 @@
           </div>
         </div>
         <!-- billing address.. -->
-        <h4 class="mb-3 mt-3">Shipping Address</h4>
+        <h4 class="mb-3 mt-3">Billing Address</h4>
         <hr>
         <div class="mb-3" formGroupName="billingaddress">
           <label for="address">Address</label>
@@ -151,17 +151,16 @@
         <div class="row">
           <div class="col-md-5 mb-3" formGroupName="billingaddress">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" formControlName="country" required="">
-              <option value="">Choose...</option>
-              <option value="United States">United States</option>
+            <select class="custom-select d-block w-100" formControlName="country" required="" (change)="getStates('billingaddress')">
+              <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
             </select>
             <div class="invalid-feedback">Please select a valid country.</div>
           </div>
           <div class="col-md-4 mb-3" formGroupName="billingaddress">
             <label for="state">State</label>
             <select class="custom-select d-block w-100" formControlName="state" required="">
-              <option value="">Choose...</option>
-              <option>California</option>
+              
+              <option *ngFor="let state of billingAddressStates" [ngValue]="state">{{state.name}}</option>
             </select>
             <div class="invalid-feedback">Please provide a valid state.</div>
           </div>
