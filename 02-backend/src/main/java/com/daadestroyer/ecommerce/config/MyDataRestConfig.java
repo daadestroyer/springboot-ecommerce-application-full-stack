@@ -1,7 +1,10 @@
 package com.daadestroyer.ecommerce.config;
 
+import com.daadestroyer.ecommerce.entity.Country;
 import com.daadestroyer.ecommerce.entity.Product;
 import com.daadestroyer.ecommerce.entity.ProductCategory;
+import com.daadestroyer.ecommerce.entity.States;
+import com.daadestroyer.ecommerce.repository.CountryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -23,22 +26,14 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        HttpMethod[] theUnSupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
-        // Disable the method for Product : PUT , POST , DELETE
+    }
+
+    private void disableHttpMethods(Class theClass , RepositoryRestConfiguration config, HttpMethod[] theUnSupportedActions) {
         config.getExposureConfiguration()
-                .forDomainType(Product.class)
+                .forDomainType(theClass)
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnSupportedActions))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnSupportedActions));
-
-        // Disable the method for ProductCategory : PUT , POST , DELETE
-        config.getExposureConfiguration()
-                .forDomainType(ProductCategory.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnSupportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnSupportedActions));
-
-        // call an internal helper method to expose the id
-        exposeIds(config);
     }
 
     private void exposeIds(RepositoryRestConfiguration configuration) {
