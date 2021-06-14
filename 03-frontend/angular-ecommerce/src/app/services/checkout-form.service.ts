@@ -11,7 +11,7 @@ export class CheckoutFormService {
   getCreditCardMonths(startMonth:number):Observable<number[]> {
     let data: number[] = [];
 
-    for (let theMonth = 0; theMonth <= 12; theMonth++) {
+    for (let theMonth = startMonth; theMonth <= 12; theMonth++) {
       data.push(theMonth);
     }
     return of(data); // the of operator from rxjs , will wrap an object as an Observable
