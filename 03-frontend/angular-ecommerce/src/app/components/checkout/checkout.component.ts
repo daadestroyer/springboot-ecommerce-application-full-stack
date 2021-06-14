@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CartItem } from '../../entitys/cart-item';
 import { CartService } from '../../services/cart.service';
 import { CheckoutFormService } from '../../services/checkout-form.service';
+import { Country } from '../../entitys/country';
 
 @Component({
   selector: 'app-checkout',
@@ -19,6 +20,8 @@ export class CheckoutComponent implements OnInit {
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
 
+
+  countries : Country[] = []
   constructor(
     private formBuilder: FormBuilder,
     private cartService: CartService,
@@ -74,6 +77,11 @@ export class CheckoutComponent implements OnInit {
       console.log('Retrieved Credit Card Years : ' + JSON.stringify(data));
       this.creditCardYears = data;
     });
+
+    // populate countries
+    this.checkOutFormService.getCountries().subscribe(
+      (data) => this.countries = data
+    );
   }   
 
   handleMonthsAndYears() {
