@@ -151,4 +151,24 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
+
+  
+  copyShippingAddressToBillingAddress(event) {
+
+    if (event.target.checked) {
+      // billingaddress me sari values set kardo shipping address ki
+      this.checkoutFormGroup.controls.billingaddress.setValue(this.checkoutFormGroup.controls.shippingaddress.value);
+
+      // bug fix for states
+      this.billingAddressStates = this.shippingAddressStates;
+
+    }
+    else {
+      this.checkoutFormGroup.controls.billingaddress.reset();
+
+      // bug fix for states
+      this.billingAddressStates = [];
+    }
+    
+  }
 }

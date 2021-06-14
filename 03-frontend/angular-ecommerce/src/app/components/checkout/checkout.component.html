@@ -134,6 +134,17 @@
             <div class="invalid-feedback">Zip code required.</div>
           </div>
         </div>
+          <!--Shipping address is the same as my billing addres-->
+          <hr class="mb-4" />
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="same-address" (change)="copyShippingAddressToBillingAddress($event)"/>
+            <label class="custom-control-label" for="same-address">Billing address is the same as my shipping
+              address</label>
+          </div>
+          <!-- <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="save-info" />
+            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+          </div> -->
         <!-- billing address.. -->
         <h4 class="mb-3 mt-3">Billing Address</h4>
         <hr>
@@ -170,17 +181,7 @@
             <div class="invalid-feedback">Zip code required.</div>
           </div>
         </div>
-        <!--Shipping address is the same as my billing addres-->
-        <hr class="mb-4" />
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="same-address" />
-          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
-            address</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="save-info" />
-          <label class="custom-control-label" for="save-info">Save this information for next time</label>
-        </div>
+      
         <hr class="mb-4" />
         <h4 class="mb-3">Payment</h4>
         
