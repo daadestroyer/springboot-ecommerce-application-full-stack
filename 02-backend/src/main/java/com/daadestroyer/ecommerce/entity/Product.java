@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 @Entity
 @Table(name="product")
 @Data
@@ -51,12 +50,4 @@ public class Product {
     @Column(name = "last_updated")
     @UpdateTimestamp
     private Date lastUpdated;
-
-
-
-
-
-
-
-
 }
