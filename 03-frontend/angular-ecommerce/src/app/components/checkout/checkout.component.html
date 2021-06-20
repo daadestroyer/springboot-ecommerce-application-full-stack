@@ -3,7 +3,7 @@
     <h1>Checkout form</h1>
   </div>
   <div class="row">
-    <div class="col-md-5 order-md-2 mb-4">
+    <div class="col-md-4 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your cart</span>
         <span class="badge badge-secondary badge-pill">{{
@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="col-md-7 order-md-1">
+    <div class="col-md-8 order-md-1">
       <!-- customer information -->
       <h4 class="mb-3">Customer Information</h4>
       <hr>
@@ -89,15 +89,15 @@
              -->
             <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="mt-1">
 
-              <div *ngIf="firstName.errors.required" >
+              <div *ngIf="firstName.errors.required">
                 <h5>* First Name is required</h5>
               </div>
 
-              <div *ngIf="firstName.errors.minlength" >
+              <div *ngIf="firstName.errors.minlength">
                 <h5>* First Name must me atleast 2 characters</h5>
               </div>
 
-              <div *ngIf="firstName.errors.checkWhiteSpace" >
+              <div *ngIf="firstName.errors.checkWhiteSpace">
                 <h5>* Whitespaces not allowed</h5>
               </div>
 
@@ -108,15 +108,15 @@
             <input type="text" formControlName="lastName" class="form-control" placeholder="" value="" required="" />
             <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched) " class="mt-1">
 
-              <div *ngIf="lastName.errors.required " >
+              <div *ngIf="lastName.errors.required ">
                 <h5>* Last Name is required</h5>
               </div>
 
-              <div *ngIf="lastName.errors.minlength" >
+              <div *ngIf="lastName.errors.minlength">
                 <h5>* Last Name must me atleast 2 characters</h5>
               </div>
- 
-              <div *ngIf="lastName.errors.checkWhiteSpace" >
+
+              <div *ngIf="lastName.errors.checkWhiteSpace">
                 <h5>* Whitespaces not allowed</h5>
               </div>
 
@@ -127,17 +127,17 @@
           <div class="col-md-12 mb-3" formGroupName="customer">
             <label for="firstName">Email</label>
             <input type="email" formControlName="email" class="form-control" placeholder="" value="" required="" />
-            <div *ngIf="email.invalid && (email.dirty || firstName.touched)" class="mt-1">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="mt-1">
 
-              <div *ngIf="email.errors.required" >
+              <div *ngIf="email.errors.required">
                 <h5>* Email Name is required</h5>
               </div>
 
-              <div *ngIf="email.errors.pattern" >
+              <div *ngIf="email.errors.pattern">
                 <h5>* Wrong Email</h5>
               </div>
- 
-              <div *ngIf="email.errors.checkWhiteSpace" >
+
+              <div *ngIf="email.errors.checkWhiteSpace">
                 <h5>* Whitespaces not allowed</h5>
               </div>
             </div>
@@ -148,24 +148,50 @@
         <hr>
         <div class="mb-3" formGroupName="shippingaddress">
           <label for="address">Address</label>
-          <input type="text" class="form-control" formControlName="addr1" placeholder="1234 Main St" required="" />
-          <div class="invalid-feedback">
-            Please enter your shipping address.
+          <input type="text" class="form-control" formControlName="addr1" />
+          <div *ngIf="addr1.invalid && (addr1.dirty || addr1.touched)" class="mt-1">
+
+            <div *ngIf="addr1.errors.required">
+              <h5>* addr1 is required</h5>
+            </div>
+            <div *ngIf="addr1.errors.minlength">
+              <h5>* addr1 must me atleast 5 characters</h5>
+            </div>
+            <div *ngIf="addr1.errors.checkWhiteSpace">
+              <h5>* Whitespaces not allowed</h5>
+            </div>
           </div>
         </div>
         <div class="mb-3" formGroupName="shippingaddress">
           <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" formControlName="addr2" placeholder="Apartment or suite" />
+          <input type="text" class="form-control" formControlName="addr2" />
+          <div *ngIf="addr2.invalid && (addr2.dirty || addr2.touched)" class="mt-1">
+
+            <div *ngIf="addr2.errors.required">
+              <h5>* addr2 is required</h5>
+            </div>
+            <div *ngIf="addr2.errors.minlength">
+              <h5>* addr2 must me atleast 5 characters</h5>
+            </div>
+            <div *ngIf="addr2.errors.checkWhiteSpace">
+              <h5>* Whitespaces not allowed</h5>
+            </div>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-5 mb-3" formGroupName="shippingaddress">
+          <div class="col-md-4 mb-3" formGroupName="shippingaddress">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" formControlName="country" required=""
+            <select class="custom-select d-block w-100" formControlName="country"
               (change)="getStates('shippingaddress')">
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
 
             </select>
-            <div class="invalid-feedback">Please select a valid country.</div>
+            <div *ngIf="country.invalid && (country.dirty || country.touched)" class="mt-1">
+
+              <div *ngIf="country.errors.required">
+                <h5>* country is required</h5>
+              </div>
+            </div>
           </div>
           <div class="col-md-4 mb-3" formGroupName="shippingaddress">
             <label for="state">State</label>
@@ -173,12 +199,34 @@
               <option *ngFor="let state of shippingAddressStates" [ngValue]="state">{{state.name}}</option>
 
             </select>
-            <div class="invalid-feedback">Please provide a valid state.</div>
+            <div *ngIf="state.invalid && (state.dirty || state.touched)" class="mt-1">
+
+              <div *ngIf="state.errors.required">
+                <h5>* state is required</h5>
+              </div>
+            </div>
           </div>
-          <div class="col-md-3 mb-3" formGroupName="shippingaddress">
+          <div class="col-md-4 mb-3" formGroupName="shippingaddress">
             <label for="zip">Zip</label>
             <input type="text" class="form-control" formControlName="zip" placeholder="" required="" />
-            <div class="invalid-feedback">Zip code required.</div>
+            <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="mt-1">
+
+              <div *ngIf="zip.errors.required">
+                <h5>* zip is required</h5>
+              </div>
+              <div *ngIf="zip.errors.minlength">
+                <h5>* Minimum length must be 6</h5>
+              </div>
+              <div *ngIf="zip.errors.maxlength">
+                <h5>* Maximum length must be 6</h5>
+              </div>
+              <div *ngIf="zip.errors.checkWhiteSpace">
+                <h5>* Whitespaces are not allowed</h5>
+              </div>
+              <div *ngIf="zip.errors.checkZip">
+                <h5>* ZIP can be number only</h5>
+              </div>
+            </div>
           </div>
         </div>
         <!--Shipping address is the same as my billing addres-->
@@ -198,23 +246,49 @@
         <hr>
         <div class="mb-3" formGroupName="billingaddress">
           <label for="address">Address</label>
-          <input type="text" class="form-control" formControlName="addr1" placeholder="1234 Main St" required="" />
-          <div class="invalid-feedback">
-            Please enter your shipping address.
+          <input type="text" class="form-control" formControlName="addr1"   />
+          <div *ngIf="billingaddr1.invalid && (billingaddr1.dirty || billingaddr1.touched)" class="mt-1">
+
+            <div *ngIf="billingaddr1.errors.required">
+              <h5>* addr1 is required</h5>
+            </div>
+            <div *ngIf="billingaddr1.errors.minlength">
+              <h5>* addr1 must me atleast 5 characters</h5>
+            </div>
+            <div *ngIf="billingaddr1.errors.checkWhiteSpace">
+              <h5>* Whitespaces not allowed</h5>
+            </div>
           </div>
         </div>
         <div class="mb-3" formGroupName="billingaddress">
           <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" formControlName="addr2" placeholder="Apartment or suite" />
+          <input type="text" class="form-control" formControlName="addr2" />
+          <div *ngIf="billingaddr2.invalid && (billingaddr2.dirty || billingaddr2.touched)" class="mt-1">
+
+            <div *ngIf="billingaddr2.errors.required">
+              <h5>* addr2 is required</h5>
+            </div>
+            <div *ngIf="billingaddr2.errors.minlength">
+              <h5>* addr2 must me atleast 5 characters</h5>
+            </div>
+            <div *ngIf="billingaddr2.errors.checkWhiteSpace">
+              <h5>* Whitespaces not allowed</h5>
+            </div>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-5 mb-3" formGroupName="billingaddress">
+          <div class="col-md-4 mb-3" formGroupName="billingaddress">
             <label for="country">Country</label>
             <select class="custom-select d-block w-100" formControlName="country" required=""
               (change)="getStates('billingaddress')">
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
             </select>
-            <div class="invalid-feedback">Please select a valid country.</div>
+            <div *ngIf="billingaddresscountry.invalid && (billingaddresscountry.dirty || billingaddresscountry.touched)" class="mt-1">
+
+              <div *ngIf="billingaddresscountry.errors.required">
+                <h5>* billingaddresscountry is required</h5>
+              </div>
+            </div>
           </div>
           <div class="col-md-4 mb-3" formGroupName="billingaddress">
             <label for="state">State</label>
@@ -222,12 +296,34 @@
 
               <option *ngFor="let state of billingAddressStates" [ngValue]="state">{{state.name}}</option>
             </select>
-            <div class="invalid-feedback">Please provide a valid state.</div>
+            <div *ngIf="billingaddressstate.invalid && (billingaddressstate.dirty || billingaddressstate.touched)" class="mt-1">
+
+              <div *ngIf="billingaddressstate.errors.required">
+                <h5>* billingaddressstate is required</h5>
+              </div>
+            </div>
           </div>
-          <div class="col-md-3 mb-3" formGroupName="billingaddress">
+          <div class="col-md-4 mb-3" formGroupName="billingaddress">
             <label for="zip">Zip</label>
             <input type="text" class="form-control" formControlName="zip" placeholder="" required="" />
-            <div class="invalid-feedback">Zip code required.</div>
+            <div *ngIf="billingaddresszip.invalid && (billingaddresszip.dirty || billingaddresszip.touched)" class="mt-1">
+
+              <div *ngIf="billingaddresszip.errors.required">
+                <h5>* zip is required</h5>
+              </div>
+              <div *ngIf="billingaddresszip.errors.minlength">
+                <h5>* Minimum length must be 6</h5>
+              </div>
+              <div *ngIf="billingaddresszip.errors.maxlength">
+                <h5>* Maximum length must be 6</h5>
+              </div>
+              <div *ngIf="billingaddresszip.errors.checkWhiteSpace">
+                <h5>* Whitespaces are not allowed</h5>
+              </div>
+              <div *ngIf="billingaddresszip.errors.checkZip">
+                <h5>* ZIP can be number only</h5>
+              </div>
+            </div>
           </div>
         </div>
 

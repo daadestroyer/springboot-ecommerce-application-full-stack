@@ -11,6 +11,7 @@ import { CheckoutFormService } from '../../services/checkout-form.service';
 import { Country } from '../../entitys/country';
 import { State } from '../../entitys/state';
 import { CheckoutValidators } from './checkout-validators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout',
@@ -60,18 +61,46 @@ export class CheckoutComponent implements OnInit {
         ]),
       }),
       shippingaddress: this.formBuilder.group({
-        addr1: [''],
-        addr2: [''],
-        country: [''],
-        state: [''],
-        zip: [''],
+        addr1: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+          CheckoutValidators.checkWhiteSpace,
+        ]),
+        addr2: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          CheckoutValidators.checkWhiteSpace,
+        ]),
+        country: new FormControl('', [Validators.required]),
+        state: new FormControl('', [Validators.required]),
+        zip: new FormControl('', [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          CheckoutValidators.checkWhiteSpace,
+          CheckoutValidators.checkZip,
+        ]),
       }),
       billingaddress: this.formBuilder.group({
-        addr1: [''],
-        addr2: [''],
-        country: [''],
-        state: [''],
-        zip: [''],
+         addr1: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+          CheckoutValidators.checkWhiteSpace,
+        ]),
+        addr2: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          CheckoutValidators.checkWhiteSpace,
+        ]),
+      country: new FormControl('', [Validators.required]),
+        state: new FormControl('', [Validators.required]),
+        zip: new FormControl('', [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          CheckoutValidators.checkWhiteSpace,
+          CheckoutValidators.checkZip,
+        ]), 
       }),
       payment: this.formBuilder.group({
         cardtype: [''],
@@ -105,7 +134,7 @@ export class CheckoutComponent implements OnInit {
       .getCountries()
       .subscribe((data) => (this.countries = data));
   }
-  //getter setter methods for validation
+  //getter setter methods to get data from user and for further processing
   get firstName() {
     return this.checkoutFormGroup.get('customer.firstName');
   }
@@ -115,6 +144,46 @@ export class CheckoutComponent implements OnInit {
   get email() {
     return this.checkoutFormGroup.get('customer.email');
   }
+  get addr1() {
+    return this.checkoutFormGroup.get('shippingaddress.addr1');
+  }
+  get addr2() {
+    return this.checkoutFormGroup.get('shippingaddress.addr2');
+  }
+  get country() {
+    return this.checkoutFormGroup.get('shippingaddress.country');
+  }
+  get state() {
+    return this.checkoutFormGroup.get('shippingaddress.state');
+  }
+  get zip() { 
+    return this.checkoutFormGroup.get('shippingaddress.zip');
+  }
+ // for billingaddress
+ get billingaddressfirstName() {
+  return this.checkoutFormGroup.get('customer.firstName');
+}
+get billingaddresslastName() {
+  return this.checkoutFormGroup.get('customer.lastName');
+}
+get billingaddressemail() {
+  return this.checkoutFormGroup.get('customer.email');
+}
+get billingaddr1() {
+  return this.checkoutFormGroup.get('billingaddress.addr1');
+}
+get billingaddr2() {
+  return this.checkoutFormGroup.get('billingaddress.addr2');
+}
+get billingaddresscountry() {
+  return this.checkoutFormGroup.get('billingaddress.country');
+}
+get billingaddressstate() {
+  return this.checkoutFormGroup.get('billingaddress.state');
+}
+get billingaddresszip() { 
+  return this.checkoutFormGroup.get('billingaddress.zip');
+}
 
   handleMonthsAndYears() {
     const creditCardFormGroup = this.checkoutFormGroup.get('payment');
@@ -152,6 +221,12 @@ export class CheckoutComponent implements OnInit {
   onSubmit() {
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
     }
     console.log('handling the submit button');
     console.log(this.checkoutFormGroup.get('customer').value);
