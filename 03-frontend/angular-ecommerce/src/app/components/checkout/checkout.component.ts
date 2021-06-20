@@ -82,7 +82,7 @@ export class CheckoutComponent implements OnInit {
         ]),
       }),
       billingaddress: this.formBuilder.group({
-         addr1: new FormControl('', [
+        addr1: new FormControl('', [
           Validators.required,
           Validators.minLength(5),
           CheckoutValidators.checkWhiteSpace,
@@ -92,7 +92,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           CheckoutValidators.checkWhiteSpace,
         ]),
-      country: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required]),
         state: new FormControl('', [Validators.required]),
         zip: new FormControl('', [
           Validators.required,
@@ -100,15 +100,24 @@ export class CheckoutComponent implements OnInit {
           Validators.maxLength(6),
           CheckoutValidators.checkWhiteSpace,
           CheckoutValidators.checkZip,
-        ]), 
+        ]),
       }),
       payment: this.formBuilder.group({
-        cardtype: [''],
-        nameoncard: [''],
+        cardtype: new FormControl('', [Validators.required]),
+        nameoncard: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
         cardnumber: [''],
         expirationmonth: [''],
         expirationyear: [''],
-        cvv: [''],
+        cvv: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(3),
+          CheckoutValidators.checkWhiteSpace,
+          CheckoutValidators.checkCVV,
+        ]),
       }),
     });
 
@@ -156,34 +165,54 @@ export class CheckoutComponent implements OnInit {
   get state() {
     return this.checkoutFormGroup.get('shippingaddress.state');
   }
-  get zip() { 
+  get zip() {
     return this.checkoutFormGroup.get('shippingaddress.zip');
   }
- // for billingaddress
- get billingaddressfirstName() {
-  return this.checkoutFormGroup.get('customer.firstName');
-}
-get billingaddresslastName() {
-  return this.checkoutFormGroup.get('customer.lastName');
-}
-get billingaddressemail() {
-  return this.checkoutFormGroup.get('customer.email');
-}
-get billingaddr1() {
-  return this.checkoutFormGroup.get('billingaddress.addr1');
-}
-get billingaddr2() {
-  return this.checkoutFormGroup.get('billingaddress.addr2');
-}
-get billingaddresscountry() {
-  return this.checkoutFormGroup.get('billingaddress.country');
-}
-get billingaddressstate() {
-  return this.checkoutFormGroup.get('billingaddress.state');
-}
-get billingaddresszip() { 
-  return this.checkoutFormGroup.get('billingaddress.zip');
-}
+  // for billingaddress
+  get billingaddressfirstName() {
+    return this.checkoutFormGroup.get('customer.firstName');
+  }
+  get billingaddresslastName() {
+    return this.checkoutFormGroup.get('customer.lastName');
+  }
+  get billingaddressemail() {
+    return this.checkoutFormGroup.get('customer.email');
+  }
+  get billingaddr1() {
+    return this.checkoutFormGroup.get('billingaddress.addr1');
+  }
+  get billingaddr2() {
+    return this.checkoutFormGroup.get('billingaddress.addr2');
+  }
+  get billingaddresscountry() {
+    return this.checkoutFormGroup.get('billingaddress.country');
+  }
+  get billingaddressstate() {
+    return this.checkoutFormGroup.get('billingaddress.state');
+  }
+  get billingaddresszip() {
+    return this.checkoutFormGroup.get('billingaddress.zip');
+  }
+
+  // for payment
+  get paymentType() {
+    return this.checkoutFormGroup.get('payment.cardtype');
+  }
+  get nameOnCard() {
+    return this.checkoutFormGroup.get('payment.nameoncard');
+  }
+  get cardNumber() {
+    return this.checkoutFormGroup.get('payment.cardnumber');
+  }
+  get expirationMonth() {
+    return this.checkoutFormGroup.get('payment.expirationmonth');
+  }
+  get expirationYear() {
+    return this.checkoutFormGroup.get('payment.expirationyear');
+  }
+  get cvv() {
+    return this.checkoutFormGroup.get('payment.cvv');
+  }
 
   handleMonthsAndYears() {
     const creditCardFormGroup = this.checkoutFormGroup.get('payment');
@@ -225,8 +254,8 @@ get billingaddresszip() {
         icon: 'error',
         title: 'Oops...',
         text: 'Something went wrong!',
-        footer: '<a href="">Why do I have this issue?</a>'
-      })
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
     }
     console.log('handling the submit button');
     console.log(this.checkoutFormGroup.get('customer').value);

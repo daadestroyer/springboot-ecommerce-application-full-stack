@@ -246,7 +246,7 @@
         <hr>
         <div class="mb-3" formGroupName="billingaddress">
           <label for="address">Address</label>
-          <input type="text" class="form-control" formControlName="addr1"   />
+          <input type="text" class="form-control" formControlName="addr1" />
           <div *ngIf="billingaddr1.invalid && (billingaddr1.dirty || billingaddr1.touched)" class="mt-1">
 
             <div *ngIf="billingaddr1.errors.required">
@@ -283,7 +283,8 @@
               (change)="getStates('billingaddress')">
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
             </select>
-            <div *ngIf="billingaddresscountry.invalid && (billingaddresscountry.dirty || billingaddresscountry.touched)" class="mt-1">
+            <div *ngIf="billingaddresscountry.invalid && (billingaddresscountry.dirty || billingaddresscountry.touched)"
+              class="mt-1">
 
               <div *ngIf="billingaddresscountry.errors.required">
                 <h5>* billingaddresscountry is required</h5>
@@ -296,7 +297,8 @@
 
               <option *ngFor="let state of billingAddressStates" [ngValue]="state">{{state.name}}</option>
             </select>
-            <div *ngIf="billingaddressstate.invalid && (billingaddressstate.dirty || billingaddressstate.touched)" class="mt-1">
+            <div *ngIf="billingaddressstate.invalid && (billingaddressstate.dirty || billingaddressstate.touched)"
+              class="mt-1">
 
               <div *ngIf="billingaddressstate.errors.required">
                 <h5>* billingaddressstate is required</h5>
@@ -306,7 +308,8 @@
           <div class="col-md-4 mb-3" formGroupName="billingaddress">
             <label for="zip">Zip</label>
             <input type="text" class="form-control" formControlName="zip" placeholder="" required="" />
-            <div *ngIf="billingaddresszip.invalid && (billingaddresszip.dirty || billingaddresszip.touched)" class="mt-1">
+            <div *ngIf="billingaddresszip.invalid && (billingaddresszip.dirty || billingaddresszip.touched)"
+              class="mt-1">
 
               <div *ngIf="billingaddresszip.errors.required">
                 <h5>* zip is required</h5>
@@ -343,10 +346,19 @@
           </div>
           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="cc-name">Name on card</label>
-            <input type="text" class="form-control" formControlName="nameoncard" placeholder="Enter name on credit card"
-              required="" />
-            <small class="text-muted">Full name as displayed on card</small>
-            <div class="invalid-feedback">Name on card is required</div>
+            <input type="text" class="form-control" formControlName="nameoncard" />
+
+            <div *ngIf="nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)" class="mt-1">
+
+              <div *ngIf="nameOnCard.errors.required">
+                <h5>* nameOnCard is required</h5>
+              </div>
+
+              <div *ngIf="nameOnCard.errors.minlength">
+                <h5>* name can't be less than of 2 character</h5>
+              </div>
+
+            </div>
           </div>
         </div>
         <div class="row">
@@ -381,7 +393,25 @@
             <input type="text" class="form-control" formControlName="cvv" placeholder="Enter three digit CVV"
               required="" />
             <small class="text-muted">Three digit CVV number as displayed on the card</small>
-            <div class="invalid-feedback">Security code required</div>
+            <div *ngIf="cvv.invalid && (cvv.dirty || cvv.touched)" class="mt-1">
+              <div *ngIf="cvv.errors.required">
+                <h5>* CVV is required</h5>
+              </div>
+
+              <div *ngIf="cvv.errors.minlength">
+                <h5>* CVV must be of 3 digit only</h5>
+              </div>
+
+              <div *ngIf="cvv.errors.maxlength">
+                <h5>* CVV must be of 3 digit only</h5>
+              </div>
+              <div *ngIf="cvv.errors.checkWhiteSpace">
+                <h5>* Whitespaces not allowed</h5>
+              </div>
+              <div *ngIf="cvv.errors.checkCVV">
+                <h5>* CVV can be digit only</h5>
+              </div>
+            </div>
           </div>
         </div>
         <hr class="mb-4" />

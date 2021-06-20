@@ -11,7 +11,7 @@ export class CheckoutValidators {
       return null;
     }
   }
-  // whitespaces zip code is number or not
+  //  zip code is number or not
   static checkZip(control: FormControl): ValidationErrors {
     // check is string contains whitespaces or not
     if (isNaN(control.value)) {
@@ -23,4 +23,19 @@ export class CheckoutValidators {
       return null;
     }
   }
+
+  //  cvv code is number or not
+  static checkCVV(control: FormControl): ValidationErrors {
+    // check is string contains whitespaces or not
+    if (isNaN(control.value)) {
+      console.log("not a number");
+      // invalid , return object
+      return { checkCVV: true };
+    } else {
+      console.log("is a number");
+      return null;
+    }
+  }
+
+
 }
