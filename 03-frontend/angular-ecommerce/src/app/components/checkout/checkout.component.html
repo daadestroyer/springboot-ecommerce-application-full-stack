@@ -23,10 +23,10 @@
                 {{ item.unitPrice | currency: "INR" }}
               </span></b>
           </div>
-        
-           
+
+
         </li>
-        
+
       </ul>
       <ul class="list-group mb-3 sticky-top">
         <li class="list-group-item d-flex justify-content-between bg-light">
@@ -82,19 +82,54 @@
           <div class="col-md-6 mb-3" formGroupName="customer">
             <label for="firstName">First name</label>
             <input type="text" formControlName="firstName" class="form-control" placeholder="" value="" required="" />
-            <div class="invalid-feedback">Valid first name is required.</div>
+            <!-- 
+              firstName.invalid means did validations fail
+              firstName.dirty did user change field value
+              firstName.touched did filed lose focus 
+             -->
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="mt-1">
+
+              <div *ngIf="firstName.errors.required" id="fname-error">
+                <h5>* First Name is required</h5>
+              </div>
+
+              <div *ngIf="firstName.errors.minlength" id="fname-error">
+                <h5>* First Name must me atleast 2 characters</h5>
+              </div>
+
+            </div>
           </div>
           <div class="col-md-6 mb-3" formGroupName="customer">
             <label for="firstName">Last name</label>
             <input type="text" formControlName="lastName" class="form-control" placeholder="" value="" required="" />
-            <div class="invalid-feedback">Valid last name is required.</div>
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched) " class="mt-1">
+
+              <div *ngIf="lastName.errors.required " id="fname-error">
+                <h5>* Last Name is required</h5>
+              </div>
+
+              <div *ngIf="lastName.errors.minlength" id="fname-error">
+                <h5>* Last Name must me atleast 2 characters</h5>
+              </div>
+
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 mb-3" formGroupName="customer">
             <label for="firstName">Email</label>
             <input type="email" formControlName="email" class="form-control" placeholder="" value="" required="" />
-            <div class="invalid-feedback">Valid first name is required.</div>
+            <div *ngIf="email.invalid && (email.dirty || firstName.touched)" class="mt-1">
+
+              <div *ngIf="email.errors.required" id="fname-error">
+                <h5>* Email Name is required</h5>
+              </div>
+
+              <div *ngIf="email.errors.pattern" id="fname-error">
+                <h5>* Wrong Email</h5>
+              </div>
+
+            </div>
           </div>
         </div>
         <!-- shipping address -->
@@ -114,17 +149,18 @@
         <div class="row">
           <div class="col-md-5 mb-3" formGroupName="shippingaddress">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" formControlName="country" required="" (change)="getStates('shippingaddress')">
+            <select class="custom-select d-block w-100" formControlName="country" required=""
+              (change)="getStates('shippingaddress')">
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
-             
+
             </select>
             <div class="invalid-feedback">Please select a valid country.</div>
           </div>
           <div class="col-md-4 mb-3" formGroupName="shippingaddress">
             <label for="state">State</label>
-            <select class="custom-select d-block w-100" formControlName="state" required="" >
+            <select class="custom-select d-block w-100" formControlName="state" required="">
               <option *ngFor="let state of shippingAddressStates" [ngValue]="state">{{state.name}}</option>
-               
+
             </select>
             <div class="invalid-feedback">Please provide a valid state.</div>
           </div>
@@ -134,14 +170,15 @@
             <div class="invalid-feedback">Zip code required.</div>
           </div>
         </div>
-          <!--Shipping address is the same as my billing addres-->
-          <hr class="mb-4" />
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="same-address" (change)="copyShippingAddressToBillingAddress($event)"/>
-            <label class="custom-control-label" for="same-address">Billing address is the same as my shipping
-              address</label>
-          </div>
-          <!-- <div class="custom-control custom-checkbox">
+        <!--Shipping address is the same as my billing addres-->
+        <hr class="mb-4" />
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="same-address"
+            (change)="copyShippingAddressToBillingAddress($event)" />
+          <label class="custom-control-label" for="same-address">Billing address is the same as my shipping
+            address</label>
+        </div>
+        <!-- <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="save-info" />
             <label class="custom-control-label" for="save-info">Save this information for next time</label>
           </div> -->
@@ -162,7 +199,8 @@
         <div class="row">
           <div class="col-md-5 mb-3" formGroupName="billingaddress">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" formControlName="country" required="" (change)="getStates('billingaddress')">
+            <select class="custom-select d-block w-100" formControlName="country" required=""
+              (change)="getStates('billingaddress')">
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
             </select>
             <div class="invalid-feedback">Please select a valid country.</div>
@@ -170,7 +208,7 @@
           <div class="col-md-4 mb-3" formGroupName="billingaddress">
             <label for="state">State</label>
             <select class="custom-select d-block w-100" formControlName="state" required="">
-              
+
               <option *ngFor="let state of billingAddressStates" [ngValue]="state">{{state.name}}</option>
             </select>
             <div class="invalid-feedback">Please provide a valid state.</div>
@@ -181,10 +219,10 @@
             <div class="invalid-feedback">Zip code required.</div>
           </div>
         </div>
-      
+
         <hr class="mb-4" />
         <h4 class="mb-3">Payment</h4>
-        
+
         <div class="row">
           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="country">Card Type</label>
@@ -196,25 +234,27 @@
             </select>
             <div class="invalid-feedback">Please select a vssssalid country.</div>
           </div>
-          <div class="col-md-6 mb-3" formGroupName="payment"> 
+          <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="cc-name">Name on card</label>
-            <input type="text" class="form-control"  formControlName="nameoncard" placeholder="Enter name on credit card" required="" />
+            <input type="text" class="form-control" formControlName="nameoncard" placeholder="Enter name on credit card"
+              required="" />
             <small class="text-muted">Full name as displayed on card</small>
             <div class="invalid-feedback">Name on card is required</div>
           </div>
         </div>
         <div class="row">
-           <div class="col-md-6 mb-3" formGroupName="payment">
+          <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="cc-number">Credit card number</label>
-            <input type="text" class="form-control" formControlName="cardnumber" placeholder="Enter card number" required="" />
+            <input type="text" class="form-control" formControlName="cardnumber" placeholder="Enter card number"
+              required="" />
             <small class="text-muted">Credit Card number as displayed on card</small>
             <div class="invalid-feedback">Credit card number is required</div>
           </div>
           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="state">Expiration Month</label>
             <select class="custom-select d-block w-100" formControlName="expirationmonth" required="">
-              <option *ngFor="let month of creditCardMonths" >{{month}}</option>
-               
+              <option *ngFor="let month of creditCardMonths">{{month}}</option>
+
             </select>
             <div class="invalid-feedback">Please provide a valid state.</div>
           </div>
@@ -222,15 +262,17 @@
         <div class="row">
           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="state">Expiration Year</label>
-            <select class="custom-select d-block w-100" formControlName="expirationyear" required="" (change)="handleMonthsAndYears()"> 
-              <option *ngFor="let year of creditCardYears" >{{year}}</option>
-               
+            <select class="custom-select d-block w-100" formControlName="expirationyear" required=""
+              (change)="handleMonthsAndYears()">
+              <option *ngFor="let year of creditCardYears">{{year}}</option>
+
             </select>
             <div class="invalid-feedback">Please provide a valid state.</div>
           </div>
           <div class="col-md-6 mb-3" formGroupName="payment">
             <label for="cc-cvv">CVV</label>
-            <input type="text" class="form-control" formControlName="cvv" placeholder="Enter three digit CVV" required="" />
+            <input type="text" class="form-control" formControlName="cvv" placeholder="Enter three digit CVV"
+              required="" />
             <small class="text-muted">Three digit CVV number as displayed on the card</small>
             <div class="invalid-feedback">Security code required</div>
           </div>
@@ -243,4 +285,3 @@
     </div>
   </div>
 </div>
-
