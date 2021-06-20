@@ -89,12 +89,16 @@
              -->
             <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="mt-1">
 
-              <div *ngIf="firstName.errors.required" id="fname-error">
+              <div *ngIf="firstName.errors.required" >
                 <h5>* First Name is required</h5>
               </div>
 
-              <div *ngIf="firstName.errors.minlength" id="fname-error">
+              <div *ngIf="firstName.errors.minlength" >
                 <h5>* First Name must me atleast 2 characters</h5>
+              </div>
+
+              <div *ngIf="firstName.errors.checkWhiteSpace" >
+                <h5>* Whitespaces not allowed</h5>
               </div>
 
             </div>
@@ -104,12 +108,16 @@
             <input type="text" formControlName="lastName" class="form-control" placeholder="" value="" required="" />
             <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched) " class="mt-1">
 
-              <div *ngIf="lastName.errors.required " id="fname-error">
+              <div *ngIf="lastName.errors.required " >
                 <h5>* Last Name is required</h5>
               </div>
 
-              <div *ngIf="lastName.errors.minlength" id="fname-error">
+              <div *ngIf="lastName.errors.minlength" >
                 <h5>* Last Name must me atleast 2 characters</h5>
+              </div>
+ 
+              <div *ngIf="lastName.errors.checkWhiteSpace" >
+                <h5>* Whitespaces not allowed</h5>
               </div>
 
             </div>
@@ -121,14 +129,17 @@
             <input type="email" formControlName="email" class="form-control" placeholder="" value="" required="" />
             <div *ngIf="email.invalid && (email.dirty || firstName.touched)" class="mt-1">
 
-              <div *ngIf="email.errors.required" id="fname-error">
+              <div *ngIf="email.errors.required" >
                 <h5>* Email Name is required</h5>
               </div>
 
-              <div *ngIf="email.errors.pattern" id="fname-error">
+              <div *ngIf="email.errors.pattern" >
                 <h5>* Wrong Email</h5>
               </div>
-
+ 
+              <div *ngIf="email.errors.checkWhiteSpace" >
+                <h5>* Whitespaces not allowed</h5>
+              </div>
             </div>
           </div>
         </div>
