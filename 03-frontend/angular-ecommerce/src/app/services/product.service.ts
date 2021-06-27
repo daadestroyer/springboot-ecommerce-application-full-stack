@@ -23,7 +23,7 @@ export class ProductService {
   getProductListByCategoryIdPaginate(catId:number): Observable<Product[]> {
 
     // build URL based on category id
-    const searchUrl = `${this.productUrl}/search/findProductByCategoryId?id=${catId}`;
+    const searchUrl = `${this.productUrl}/search/findByCategoryId?id=${catId}`;
     return this.getProductList(searchUrl);
   }
 
@@ -59,7 +59,7 @@ export class ProductService {
   getProductListPagination(page:number , pageSize : number , catId : number): Observable<GetResponseProducts> {
 
     // build URL based on category id using pagination
-    const searchUrl = `${this.productUrl}/search/findProductByCategoryId?id=${catId}`
+    const searchUrl = `${this.productUrl}/search/findByCategoryId?id=${catId}`
       + `&page=${page}&size=${pageSize}`;
     return this.httpClient.get<GetResponseProducts>(searchUrl);
   }
