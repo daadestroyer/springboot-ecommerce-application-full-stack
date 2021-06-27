@@ -1,4 +1,4 @@
-package com.daadestroyer.ecommerce.dao;
+package com.daadestroyer.ecommerce.repository;
 
 import com.daadestroyer.ecommerce.entity.Product;
 import org.springframework.data.domain.Page;

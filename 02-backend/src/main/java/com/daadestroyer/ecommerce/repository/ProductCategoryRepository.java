@@ -1,4 +1,4 @@
-package com.daadestroyer.ecommerce.dao;
+package com.daadestroyer.ecommerce.repository;
 
 import com.daadestroyer.ecommerce.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
