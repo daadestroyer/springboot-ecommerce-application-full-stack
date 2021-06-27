@@ -149,15 +149,15 @@
         <div class="mb-3" formGroupName="shippingaddress">
           <label for="address">Address</label>
           <input type="text" class="form-control" formControlName="addr1" />
-          <div *ngIf="addr1.invalid && (addr1.dirty || addr1.touched)" class="mt-1">
+          <div *ngIf="shippingaddressaddr1.invalid && (shippingaddressaddr1.dirty || shippingaddressaddr1.touched)" class="mt-1">
 
-            <div *ngIf="addr1.errors.required">
+            <div *ngIf="shippingaddressaddr1.errors.required">
               <h5>* addr1 is required</h5>
             </div>
-            <div *ngIf="addr1.errors.minlength">
+            <div *ngIf="shippingaddressaddr1.errors.minlength">
               <h5>* addr1 must me atleast 5 characters</h5>
             </div>
-            <div *ngIf="addr1.errors.checkWhiteSpace">
+            <div *ngIf="shippingaddressaddr1.errors.checkWhiteSpace">
               <h5>* Whitespaces not allowed</h5>
             </div>
           </div>
@@ -165,15 +165,15 @@
         <div class="mb-3" formGroupName="shippingaddress">
           <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
           <input type="text" class="form-control" formControlName="addr2" />
-          <div *ngIf="addr2.invalid && (addr2.dirty || addr2.touched)" class="mt-1">
+          <div *ngIf="shippingaddressaddr2.invalid && (shippingaddressaddr2.dirty || shippingaddressaddr2.touched)" class="mt-1">
 
-            <div *ngIf="addr2.errors.required">
+            <div *ngIf="shippingaddressaddr2.errors.required">
               <h5>* addr2 is required</h5>
             </div>
-            <div *ngIf="addr2.errors.minlength">
+            <div *ngIf="shippingaddressaddr2.errors.minlength">
               <h5>* addr2 must me atleast 5 characters</h5>
             </div>
-            <div *ngIf="addr2.errors.checkWhiteSpace">
+            <div *ngIf="shippingaddressaddr2.errors.checkWhiteSpace">
               <h5>* Whitespaces not allowed</h5>
             </div>
           </div>
@@ -186,9 +186,9 @@
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
 
             </select>
-            <div *ngIf="country.invalid && (country.dirty || country.touched)" class="mt-1">
+            <div *ngIf="shippingaddresscountry.invalid && (shippingaddresscountry.dirty || shippingaddresscountry.touched)" class="mt-1">
 
-              <div *ngIf="country.errors.required">
+              <div *ngIf="shippingaddresscountry.errors.required">
                 <h5>* country is required</h5>
               </div>
             </div>
@@ -199,7 +199,7 @@
               <option *ngFor="let state of shippingAddressStates" [ngValue]="state">{{state.name}}</option>
 
             </select>
-            <div *ngIf="state.invalid && (state.dirty || state.touched)" class="mt-1">
+            <div *ngIf="shippingaddressstate.invalid && (shippingaddressstate.dirty || shippingaddressstate.touched)" class="mt-1">
 
               <div *ngIf="state.errors.required">
                 <h5>* state is required</h5>
@@ -209,24 +209,42 @@
           <div class="col-md-4 mb-3" formGroupName="shippingaddress">
             <label for="zip">Zip</label>
             <input type="text" class="form-control" formControlName="zip" placeholder="" required="" />
-            <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="mt-1">
+            <div *ngIf="shippingaddresszip.invalid && (shippingaddresszip.dirty || shippingaddresszip.touched)" class="mt-1">
 
-              <div *ngIf="zip.errors.required">
+              <div *ngIf="shippingaddresszip.errors.required">
                 <h5>* zip is required</h5>
               </div>
-              <div *ngIf="zip.errors.minlength">
+              <div *ngIf="shippingaddresszip.errors.minlength">
                 <h5>* Minimum length must be 6</h5>
               </div>
-              <div *ngIf="zip.errors.maxlength">
+              <div *ngIf="shippingaddresszip.errors.maxlength">
                 <h5>* Maximum length must be 6</h5>
               </div>
-              <div *ngIf="zip.errors.checkWhiteSpace">
+              <div *ngIf="shippingaddresszip.errors.checkWhiteSpace">
                 <h5>* Whitespaces are not allowed</h5>
               </div>
-              <div *ngIf="zip.errors.checkZip">
+              <div *ngIf="shippingaddresszip.errors.checkZip">
                 <h5>* ZIP can be number only</h5>
               </div>
             </div>
+          </div>
+          <div class="col-md-4" formGroupName="shippingaddress">
+            
+              <label for="City">City</label>
+              <input type="text" class="form-control" formControlName="city" />
+              <div *ngIf="shippingaddresscity.invalid && (shippingaddresscity.dirty || shippingaddresscity.touched)" class="mt-1">
+    
+                <div *ngIf="shippingaddresscity.errors.required">
+                  <h5>* city is required</h5>
+                </div>
+                <div *ngIf="shippingaddresscity.errors.minlength">
+                  <h5>* city must me atleast 2 characters</h5>
+                </div>
+                <div *ngIf="shippingaddresscity.errors.checkWhiteSpace">
+                  <h5>* Whitespaces not allowed</h5>
+                </div>
+              </div>
+            
           </div>
         </div>
         <!--Shipping address is the same as my billing addres-->
@@ -328,6 +346,25 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-4" formGroupName="billingaddress">
+            
+            <label for="City">City</label>
+            <input type="text" class="form-control" formControlName="city" />
+            <div *ngIf="billingaddresscity.invalid && (billingaddresscity.dirty || billingaddresscity.touched)" class="mt-1">
+  
+              <div *ngIf="billingaddresscity.errors.required">
+                <h5>* city is required</h5>
+              </div>
+              <div *ngIf="billingaddresscity.errors.minlength">
+                <h5>* city must me atleast 2 characters</h5>
+              </div>
+              <div *ngIf="billingaddresscity.errors.checkWhiteSpace">
+                <h5>* Whitespaces not allowed</h5>
+              </div>
+            </div>
+          
+        </div>
         </div>
 
         <hr class="mb-4" />
