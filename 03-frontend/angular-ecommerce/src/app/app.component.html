@@ -1,73 +1,56 @@
 <div class="continer-fluid">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" routerLink="/">
-      <img src="https://img.icons8.com/officexs/50/000000/shop.png"
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+      <img src="https://img.icons8.com/officexs/50/000000/shop.png" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <ul class="navbar-nav mr-auto" >
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/" 
-            ><i class="fas fa-home"></i> Home
+          <a class="nav-link" routerLink="/"><i class="fas fa-home"></i> Home
           </a>
         </li>
 
         <app-product-category-dropdown></app-product-category-dropdown>
 
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/contact"
-            routerLinkActive="active-link"
-            
-          >
-            <i
-              class="fas fa-phone-volume"
-              style="color: white;"
-            ></i>
-            Contact Us</a
-          >
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active-link">
+            <i class="fas fa-phone-volume" style="color: white;"></i>
+            Contact Us</a>
+
         </li>
+         
+         
+
+       
       </ul>
+
+     
 
 
       <app-search></app-search>
-      <app-cart-status></app-cart-status>
-      
 
-      <ul class="navbar-nav ml-3">
-        <li class="nav-item">
-          <a href="#">
-            <i
-              class="fas fa-sign-in-alt"
-              style="color: yellow;"
-              ><span class="ml-2" style="color: white">LOGIN</span></i
-            ></a
-          >
-        </li>
-      </ul>
+      
+      <app-cart-status></app-cart-status>
+
+      <app-login-status></app-login-status>
+
     </div>
   </nav>
 
-  <!-- <app-product-list></app-product-list> -->
+
 </div>
 <!-- MAIN CONTAINER END -->
 
-<div class="card">
+<div class="card mt-5 mb-5">
   <div class="card-body">
     <router-outlet></router-outlet>
   </div>
 </div>
 
 <!--  -->
+
+
 <app-footer></app-footer>

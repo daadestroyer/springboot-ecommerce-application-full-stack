@@ -1,0 +1,19 @@
+
+<div class="container">
+    
+  <div *ngIf="isAuthenticated && userFullName" >
+    <a href="#" class="badge badge-success p-3">Welcome back {{userFullName}}</a>
+    
+  </div>
+  
+    <button  *ngIf="!isAuthenticated"  routerLink="/login" class="btn btn-outline-success my-2 my-sm-0 ">
+        <i class="fas fa-user" style="color: white"><span class="ml-2">Login</span></i> 
+      </button>
+
+
+      <button  *ngIf="isAuthenticated"   (click)="logout()" class="btn btn-outline-danger my-2 my-sm-0 ml-2">
+        <i class="fas fa-user" style="color: white"><span class="ml-2">Logout</span></i> 
+      </button>
+
+     
+</div>

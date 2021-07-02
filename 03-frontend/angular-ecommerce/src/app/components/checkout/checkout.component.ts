@@ -316,7 +316,7 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutFormGroup.get('billingaddress').value);
     console.log(this.checkoutFormGroup.get('payment').value);
 
-    // set up order
+    // set up orders
     let order = new Order();
     order.totalPrice = this.totalPrice;
     order.totalQuantity = this.totalQuantity;
@@ -335,6 +335,7 @@ export class CheckoutComponent implements OnInit {
 
     // - short way of doing the same thingy
     let orderItems: OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
+    console.log("Order Items = "+orderItems);
 
     // set up purchase
     let purchase = new Purchase();
@@ -364,7 +365,11 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.placeOrder(purchase).subscribe({
       next: response => {
         alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
-
+        Swal.fire(
+          "Hurray",
+          "You're order placed successfully",
+          "success",
+        )
         // reset cart
         this.resetCart();
 

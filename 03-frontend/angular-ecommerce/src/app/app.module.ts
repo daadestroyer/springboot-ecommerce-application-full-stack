@@ -6,7 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { HomeComponent } from './components/home/home.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { ContactComponent } from './components/contact/contact.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ProductCategoryDropdownComponent } from './components/product-category-dropdown/product-category-dropdown.component';
@@ -19,9 +19,29 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { FooterComponent } from './components/footer/footer.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { LoginStatusComponent } from './components/login-status/login-status.component';
+import{ OKTA_CONFIG , OktaAuthModule , OktaCallbackComponent}from '@okta/okta-angular';
+
+import myAppConfig from './config/my-app-config';
+
+const oktaConfig = Object.assign({
+  onAuthRequired:(injector)=>{
+    const router = injector.get(Router);
+
+    // redirect the user to your custom login page
+    router.navigate(['/login']);
+  }
+},myAppConfig.oidc);
+
 
 
 const appRoutes: Routes = [
+  // once user is autheicated they are redirected to your app using oktaCallbackComponent
+  // normally you need to parse the response and store the OAuth + OIDC tokens
+  // the okta OktaCallbackComponent does this for you
+  {path:'login/callback',component:OktaCallbackComponent},
+  {path:'login',component:LoginComponent},
   {path:'',component:HomeComponent},
   {path:'contact',component:ContactComponent},
   {path:'products',component:ProductListComponent},
@@ -49,15 +69,19 @@ const appRoutes: Routes = [
     CartDetailsComponent,
     FooterComponent,
     CheckoutComponent,
+    LoginComponent,
+    LoginStatusComponent,
+    
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    OktaAuthModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,{provide:OKTA_CONFIG,useValue:oktaConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
