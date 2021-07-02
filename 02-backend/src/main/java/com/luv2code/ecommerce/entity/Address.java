@@ -16,21 +16,23 @@ public class Address {
     @Column(name="id")
     private Long id;
 
-    @Column(name="street")
-    private String street;
+    @Column(name="addr1")
+    private String addr1;
 
-    @Column(name="city")
-    private String city;
-
-    @Column(name="state")
-    private String state;
+    @Column(name="addr2")
+    private String addr2;
 
     @Column(name="country")
     private String country;
 
-    @Column(name="zip_code")
-    private String zipCode;
+    @Column(name="state")
+    private String state;
 
+    @Column(name="zip")
+    private String zip;
+
+    @Column(name="city")
+    private String city;
     @OneToOne
     @PrimaryKeyJoinColumn
     private Order order;
