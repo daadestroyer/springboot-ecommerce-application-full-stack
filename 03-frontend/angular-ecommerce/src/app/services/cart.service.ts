@@ -13,14 +13,31 @@ export class CartService {
   
 
   cartItem: CartItem[] = [];
+  
+  // storage: Storage = sessionStorage; // this is for session storage
+     storage : Storage = localStorage; // this is for local storage
 
+     
   // subject is a sub class of observable we can use Subject to publish event in our code the event will be sent
   // to all of the subscribers
 
   totalPrice: Subject<number> = new Subject<number>();
   totalQty: Subject<number> = new Subject<number>();
   
-  constructor() { }
+  constructor() {
+    // read the data from the storage
+    let data = JSON.parse(this.storage.getItem('cartItem'));
+
+    if(data!=null){
+      this.cartItem =  data;
+
+      // compute the total based on the data is read from storage
+      this.computeCartTotals();
+    }
+
+   }
+
+ 
 
   addToCart(myCartItem:CartItem) {
     // check if already have the item in cart or not 
@@ -78,7 +95,17 @@ export class CartService {
 
     // logging cart data just for debugging purpose  
     this.logCartData(totalPriceValue, totalQtyValue);
+
+    // persist cart data
+    this.persistCartItems();
   }
+
+  persistCartItems(){
+    // this.cartItem is value and we take that value to JSON.stringify convert object to JSON string
+    // cartItem is key
+    this.storage.setItem('cartItem',JSON.stringify(this.cartItem));
+    console.log(this.storage.getItem('cartItems'));
+  } 
 
   logCartData(totalPriceValue: number, totalQtyValue: number) {
     console.log("CONTENT OF THE CARTS")

@@ -21,12 +21,13 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
-import{ OKTA_CONFIG , OktaAuthModule , OktaCallbackComponent}from '@okta/okta-angular';
+import{ OKTA_CONFIG , OktaAuthModule , OktaCallbackComponent, OktaAuthGuard}from '@okta/okta-angular';
 
 import myAppConfig from './config/my-app-config';
+import { MembersPageComponent } from './components/members-page/members-page.component';
 
 const oktaConfig = Object.assign({
-  onAuthRequired:(injector)=>{
+  onAuthRequired:(oktaAuth, injector)=>{
     const router = injector.get(Router);
 
     // redirect the user to your custom login page
@@ -37,6 +38,11 @@ const oktaConfig = Object.assign({
 
 
 const appRoutes: Routes = [
+  
+  // if autheicated , give access to route else , send to login page
+  {path:'members',component:MembersPageComponent,canActivate:[OktaAuthGuard]},
+
+
   // once user is autheicated they are redirected to your app using oktaCallbackComponent
   // normally you need to parse the response and store the OAuth + OIDC tokens
   // the okta OktaCallbackComponent does this for you
@@ -71,6 +77,7 @@ const appRoutes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
+    MembersPageComponent,
     
   ],
   imports: [
