@@ -1,9 +1,6 @@
 package com.luv2code.ecommerce.config;
 
-import com.luv2code.ecommerce.entity.Country;
-import com.luv2code.ecommerce.entity.Product;
-import com.luv2code.ecommerce.entity.ProductCategory;
-import com.luv2code.ecommerce.entity.State;
+import com.luv2code.ecommerce.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -34,23 +31,25 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
 
     @Override
-    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config , CorsRegistry cors) {
+    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST,
-                HttpMethod.DELETE , HttpMethod.PATCH};
+                HttpMethod.DELETE, HttpMethod.PATCH};
 
-        // disable HTTP methods for ProductCategory: PUT, POST and DELETE
+        // disable HTTP methods for ProductCategory: PUT, POST and DELETE (making api read only)
         disableHttpMethods(Product.class, config, theUnsupportedActions);
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
         disableHttpMethods(Country.class, config, theUnsupportedActions);
         disableHttpMethods(State.class, config, theUnsupportedActions);
+        disableHttpMethods(Order.class, config, theUnsupportedActions);
+
 
         // call an internal helper method
         exposeIds(config);
 
         // configure the cors mapping
         // config.getBasePath() take the data of allowed.origins from application.properties
-        cors.addMapping(config.getBasePath()+"/**").allowedOrigins(allowedOrigins);
+        cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);
     }
 
     private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions) {
