@@ -20,7 +20,7 @@ import java.util.Set;
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     @Value("${allowed.origins}")
-    private String[] allowedOrigins;
+    private String[] theAllowedOrigins;
 
     private EntityManager entityManager;
 
@@ -36,20 +36,18 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST,
                 HttpMethod.DELETE, HttpMethod.PATCH};
 
-        // disable HTTP methods for ProductCategory: PUT, POST and DELETE (making api read only)
+        // disable HTTP methods for ProductCategory: PUT, POST, DELETE and PATCH
         disableHttpMethods(Product.class, config, theUnsupportedActions);
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
         disableHttpMethods(Country.class, config, theUnsupportedActions);
         disableHttpMethods(State.class, config, theUnsupportedActions);
         disableHttpMethods(Order.class, config, theUnsupportedActions);
 
-
         // call an internal helper method
         exposeIds(config);
 
-        // configure the cors mapping
-        // config.getBasePath() take the data of allowed.origins from application.properties
-        cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);
+        // configure cors mapping
+        cors.addMapping(config.getBasePath() + "/**").allowedOrigins(theAllowedOrigins);
     }
 
     private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions) {
@@ -80,10 +78,6 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(domainTypes);
     }
 }
-
-
-
-
 
 
 
