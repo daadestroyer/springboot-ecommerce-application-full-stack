@@ -25,6 +25,7 @@ import{ OKTA_CONFIG , OktaAuthModule , OktaCallbackComponent, OktaAuthGuard}from
 
 import myAppConfig from './config/my-app-config';
 import { MembersPageComponent } from './components/members-page/members-page.component';
+import { OrderHistoryComponent } from './services/order-history/order-history.component';
 
 const oktaConfig = Object.assign({
   onAuthRequired:(oktaAuth, injector)=>{
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     LoginComponent,
     LoginStatusComponent,
     MembersPageComponent,
+    OrderHistoryComponent,
     
   ],
   imports: [
