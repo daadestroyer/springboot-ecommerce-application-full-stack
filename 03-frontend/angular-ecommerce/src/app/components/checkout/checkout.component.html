@@ -126,7 +126,7 @@
         <div class="row">
           <div class="col-md-12 mb-3" formGroupName="customer">
             <label for="firstName">Email</label>
-            <input type="email" formControlName="email" class="form-control" placeholder="" value="" required="" />
+            <input type="email" formControlName="email" class="form-control" placeholder="" value="" disabled required="" />
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="mt-1">
 
               <div *ngIf="email.errors.required">

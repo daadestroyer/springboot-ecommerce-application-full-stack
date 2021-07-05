@@ -24,6 +24,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
+  storage: Storage = sessionStorage;
+
   checkoutFormGroup: FormGroup;
   cartItems: CartItem[] = [];
   totalPrice = 0;
@@ -49,6 +51,8 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.listCartDetails();
 
+    // read user email address from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail'));
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [
@@ -61,7 +65,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           CheckoutValidators.checkWhiteSpace,
         ]),
-        email: new FormControl('', [
+        email: new FormControl(theEmail, [
           Validators.required,
           Validators.pattern('^[a-z0-9,_%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
           CheckoutValidators.checkWhiteSpace,
@@ -92,7 +96,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           CheckoutValidators.checkWhiteSpace,
         ]),
-        
+
       }),
       billingaddress: this.formBuilder.group({
         addr1: new FormControl('', [
@@ -166,7 +170,7 @@ export class CheckoutComponent implements OnInit {
   get lastName() { return this.checkoutFormGroup.get('customer.lastName'); }
   get email() { return this.checkoutFormGroup.get('customer.email'); }
 
-   
+
   get shippingaddressaddr1() {
     return this.checkoutFormGroup.get('shippingaddress.addr1');
   }
@@ -213,7 +217,7 @@ export class CheckoutComponent implements OnInit {
   get billingaddresscity() {
     return this.checkoutFormGroup.get('billingaddress.city');
   }
-  
+
   // for payment
   get paymentType() {
     return this.checkoutFormGroup.get('payment.cardtype');
@@ -335,7 +339,7 @@ export class CheckoutComponent implements OnInit {
 
     // - short way of doing the same thingy
     let orderItems: OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
-    console.log("Order Items = "+orderItems);
+    console.log("Order Items = " + orderItems);
 
     // set up purchase
     let purchase = new Purchase();
@@ -385,7 +389,7 @@ export class CheckoutComponent implements OnInit {
     this.cartService.cartItem = [];
     this.cartService.totalPrice.next(0);
     this.cartService.totalQty.next(0);
-    
+
     // reset the form
     this.checkoutFormGroup.reset();
 
