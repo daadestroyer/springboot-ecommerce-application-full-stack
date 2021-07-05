@@ -25,7 +25,8 @@ import{ OKTA_CONFIG , OktaAuthModule , OktaCallbackComponent, OktaAuthGuard}from
 
 import myAppConfig from './config/my-app-config';
 import { MembersPageComponent } from './components/members-page/members-page.component';
-import { OrderHistoryComponent } from './services/order-history/order-history.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderHistory } from './entitys/order-history';
 
 const oktaConfig = Object.assign({
   onAuthRequired:(oktaAuth, injector)=>{
@@ -41,7 +42,8 @@ const oktaConfig = Object.assign({
 const appRoutes: Routes = [
   
   // if autheicated , give access to route else , send to login page
-  {path:'members',component:MembersPageComponent,canActivate:[OktaAuthGuard]},
+  {path: 'order-history', component: OrderHistoryComponent, canActivate: [ OktaAuthGuard ]},
+  {path: 'members', component: MembersPageComponent, canActivate: [ OktaAuthGuard ]},
 
 
   // once user is autheicated they are redirected to your app using oktaCallbackComponent
@@ -58,6 +60,7 @@ const appRoutes: Routes = [
   { path: 'product-detail/:id', component: ProductDetailsComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'order-history', component: OrderHistory },
   {path:'**',component:ErrorComponent},
 ];
 

@@ -1,1 +1,21 @@
-<p>order-history works!</p>
+<div class="container mt-5">
+    <table class="table table-hover table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Order Tracking Number</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Total Quantity</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tempOrderHistory of orderHistoryList">
+                <th scope="row">{{tempOrderHistory.orderTrackingNumber}}</th>
+                <td>{{tempOrderHistory.totalPrice | currency: "INR" }}</td>
+                <td>{{tempOrderHistory.totalQuantity}}</td>
+                <td>{{tempOrderHistory.dateCreated | date:'medium'}}</td>
+            </tr>
+    
+        </tbody>
+    </table>
+</div>

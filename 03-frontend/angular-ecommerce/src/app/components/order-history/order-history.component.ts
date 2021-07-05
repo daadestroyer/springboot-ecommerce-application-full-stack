@@ -9,28 +9,26 @@ import { OrderHistoryService } from 'src/app/services/order-history.service';
 })
 export class OrderHistoryComponent implements OnInit {
 
-  orderHistoryList : OrderHistory[] = [];
-  storage:Storage=sessionStorage;
-  
-  constructor(private orderHistorryService : OrderHistoryService) { }
+  orderHistoryList: OrderHistory[] = [];
+  storage: Storage = sessionStorage;
+
+  constructor(private orderHistoryService: OrderHistoryService) { }
 
   ngOnInit(): void {
     this.handleOrderHistory();
   }
 
   handleOrderHistory() {
-     // get the user email address from the session storage
-     const theEmail = JSON.parse(this.storage.getItem('userEmail'))
 
-     // retrieve data from this user give email address using OrderHistory service class
-    this.orderHistorryService.getOrderHistory(theEmail).subscribe(
-      (data)=>{
+    // read the user's email address from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail'));
+
+    // retrieve data from the service
+    this.orderHistoryService.getOrderHistory(theEmail).subscribe(
+      data => {
         this.orderHistoryList = data._embedded.orders;
       }
     );
-
-
-
   }
 
 }
