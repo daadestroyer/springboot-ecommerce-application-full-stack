@@ -35,6 +35,24 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.okta.spring:okta-spring-boot-starter:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.okta.spring:okta-spring-security-oauth2:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.okta.commons:okta-config-check:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: com.okta.commons:okta-commons-lang:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-client:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:oauth2-oidc-sdk:8.36.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.stephenc.jcip:jcip-annotations:1.0-1" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:content-type:2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:lang-tag:1.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-core:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-jose:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:nimbus-jose-jwt:8.20.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-resource-server:5.4.6" level="project" />
+    <orderEntry type="library" name="Maven: com.okta.spring:okta-spring-sdk:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.6" level="project" />
