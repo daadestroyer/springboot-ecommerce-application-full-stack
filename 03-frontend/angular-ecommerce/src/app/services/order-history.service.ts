@@ -9,19 +9,20 @@ import { OrderHistory } from '../entitys/order-history';
 export class OrderHistoryService {
 
   private orderUrl = 'http://localhost:8081/api/orders';
-  
-  constructor(private httpClient : HttpClient) { }
 
-  getOrderHistory(theEmail:string): Observable<GetResponseOrderHistory>{
-      // build URL
-      const orderHistoryUrl = `${this.orderUrl}/search/findByCustomerEmailOrderByDateCreatedDesc?email=${theEmail}`;
-      return this.httpClient.get<GetResponseOrderHistory>(orderHistoryUrl);
+  constructor(private httpClient: HttpClient) { }
+
+  getOrderHistory(theEmail: string): Observable<GetResponseOrderHistory> {
+
+    // need to build URL based on the customer email
+    const orderHistoryUrl = `${this.orderUrl}/search/findByCustomerEmailOrderByDateCreatedDesc?email=${theEmail}`;
+
+    return this.httpClient.get<GetResponseOrderHistory>(orderHistoryUrl);
   }
 }
 
-
-interface GetResponseOrderHistory{
+interface GetResponseOrderHistory {
   _embedded: {
-    orders:OrderHistory[];
+    orders: OrderHistory[];
   }
 }
