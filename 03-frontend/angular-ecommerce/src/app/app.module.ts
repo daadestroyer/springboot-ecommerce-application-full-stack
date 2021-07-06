@@ -95,8 +95,8 @@ const appRoutes: Routes = [
     OktaAuthModule
   ],
   providers: [ProductService, { provide: OKTA_CONFIG, useValue: oktaConfig },
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
-    
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
