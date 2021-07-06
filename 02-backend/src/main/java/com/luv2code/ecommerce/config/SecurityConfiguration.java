@@ -7,10 +7,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       // protect endpoint /api/order
 
+        // protect endpoint /api/orders
         http.authorizeRequests()
                 .antMatchers("/api/orders/**")
                 .authenticated()
@@ -23,5 +24,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // force a non-empty response body for 401's to make the response more friendly
         Okta.configureResourceServer401ResponseBody(http);
+
+        // disable CSRF since we are not using Cookies for session tracking
+        http.csrf().disable();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
