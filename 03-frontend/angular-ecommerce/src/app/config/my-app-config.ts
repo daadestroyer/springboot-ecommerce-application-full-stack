@@ -3,7 +3,7 @@ export default {
         // public identifier for clientId
         clientId:'0oa14wieh0KpVOWVd5d7',
         // issuer of token
-        issuer:'https://dev-87041043.okta.com',
+        issuer:'https://dev-87041043.okta.com/oauth2/default',
         // once user logged in send them here
         redirectUri:'http://localhost:4200/login/callback',
         scopes:['openid','profile','email']

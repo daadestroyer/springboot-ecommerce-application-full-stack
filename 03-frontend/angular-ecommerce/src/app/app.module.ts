@@ -54,14 +54,16 @@ const appRoutes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'',component:HomeComponent},
   {path:'contact',component:ContactComponent},
+
   {path:'products',component:ProductListComponent},
   {path:'category',component:ProductListComponent},
   { path: 'category/:id', component: ProductListComponent },
   { path: 'search/:keyword', component: ProductListComponent },
+  
   { path: 'product-detail/:id', component: ProductDetailsComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'order-history', component: OrderHistory },
+  
   {path:'**',component:ErrorComponent},
 ];
 
