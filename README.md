@@ -25,21 +25,27 @@ Frontend Code -> [https://bit.ly/3BgzAjU](https://bit.ly/3BgzAjU)
 Backend Code -> [https://bit.ly/3Be6Yrr](https://bit.ly/3Be6Yrr)
 <br>
 application.properties -> [https://bit.ly/3FnwGME](https://bit.ly/3FnwGME)
+<br>
+pom.xml -> [https://bit.ly/2YhQ3Ww](https://bit.ly/2YhQ3Ww)
+
 
 # Tech Stack
 
-<b>Frontned</b>: Thyeleaf and Boostrap 4
+<b>Frontned</b>: AngularJS and Boostrap 4
 <br>
 <b>Spring Modules</b>
   - SpringBoot
+  - Spring Data REST
   - Spring Data JPA
+  - Lombok
+  - Spring boot starter web
 
 <br>
-<b>Styling</b>: CSS , BootStrap and Thymeleaf
+<b>Styling</b>: CSS , BootStrap
 <br>
 <b>Database</b>: MySql
 <br>
-<b>Authentication and Authorisation</b>: Hibernate Validator and Validation API
+<b>Authentication and Authorisation</b>: Okta , Open ID Connect and JWT Authentication
 
 
 <!-- <p align="center">
@@ -50,15 +56,12 @@ application.properties -> [https://bit.ly/3FnwGME](https://bit.ly/3FnwGME)
 </p> -->
 
 # Overall Functionlity
-- Perform secure user registration and logout along with validation of data
-- User can add contacts in contact table
-- User can search contact by name of contacts
-- User can't see other user contact 
-- Secured profile URL of users
-- Prevent opening of user profile page through URL manipulation
-- Java Mail to send OTP to setting new password
-- Integrate RazorPay payment Gateway for dontation
-
+- User can peroform login ang registration using Okta , Open ID Connect and JWT Authentication
+- User can search product on the basis of product name
+- User can see product on the basis of product id and , can see product details 
+- User can add multiple products in the cart , and can see over all total of the cart 
+- User can placed order after filling details to checkout page
+- User can get order tracking number using UUID
 
 
 ***Glad to see you here! Show some love by [starring](https://github.com/daadestroyer/smartcontactapplication) this repo.***
